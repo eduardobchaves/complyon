@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "name": "SafeMind NR-01",
+      "command": "npm run dev",
+      "port": 3000,
+      "cwd": "/home/user/projects/safemind-nr1"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Enums
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  EMPLOYEE
+}
+
+enum Plan {
+  FREE
+  ACTIVE
+  SUSPENDED
+}
+
+enum SurveyStatus {
+  DRAFT
+  ACTIVE
+  CLOSED
+  ARCHIVED
+}
+
+enum RiskLevel {
+  LOW
+  MODERATE
+  HIGH
+}
+
+enum ActionStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum ComplaintCategory {
+  MORAL_HARASSMENT
+  SEXUAL_HARASSMENT
+  FRAUD_CORRUPTION
+  NORM_VIOLATION
+  INTERPERSONAL_CONFLICT
+  DISCRIMINATION
+  OTHER
+}
+
+enum ComplaintStatus {
+  OPEN
+  UNDER_REVIEW
+  COMPLETED
+}
+
+// Models
+model Company {
+  id               String    @id @default(cuid())
+  name             String
+  cnpj             String    @unique
+  slug             String    @unique
+  plan             Plan      @default(FREE)
+  logoUrl          String?
+  stripeCustomerId String?
+  stripeSubId      String?
+  stripeSubItemId  String?
+  maxEmployees     Int       @default(10)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  users              User[]
+  surveys            Survey[]
+  complaints         Complaint[]
+  actionPlans        ActionPlan[]
+  complianceOverrides ComplianceOverride[]
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?
+  role          Role      @default(EMPLOYEE)
+  active        Boolean   @default(true)
+  inviteToken   String?   @unique
+  invitedAt     DateTime?
+  companyId     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  company     Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  sessions    Session[]
+  accounts    Account[]
+
+  @@index([companyId])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Survey {
+  id          String       @id @default(cuid())
+  title       String
+  description String?
+  status      SurveyStatus @default(DRAFT)
+  startDate   DateTime?
+  endDate     DateTime?
+  companyId   String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  company     Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  responses   Response[]
+  actionPlans ActionPlan[]
+  tokens      SurveyToken[]
+
+  @@index([companyId])
+}
+
+// Each token grants one anonymous access to a survey — emailSentTo is internal only, never exposed to company admins
+model SurveyToken {
+  id          String    @id @default(cuid())
+  surveyId    String
+  token       String    @unique
+  emailSentTo String?
+  usedAt      DateTime?
+  createdAt   DateTime  @default(now())
+
+  survey Survey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+}
+
+// IMPORTANT: Response is COMPLETELY anonymous - no userId stored ever
+model Response {
+  id        String   @id @default(cuid())
+  surveyId  String
+  answers   Json     // { questionId: value }
+  scores    Json?    // { sphereId: score }
+  createdAt DateTime @default(now())
+
+  survey Survey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+}
+
+model ActionPlan {
+  id             String       @id @default(cuid())
+  surveyId       String
+  companyId      String
+  sphereId       String
+  title          String
+  description    String       @db.Text
+  riskLevel      RiskLevel
+  status         ActionStatus @default(PENDING)
+  responsible    String?
+  deadline       DateTime?
+  completedAt    DateTime?
+  notes          String?      @db.Text
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  survey  Survey  @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+}
+
+// IMPORTANT: Complaint is COMPLETELY anonymous - no user data stored
+model Complaint {
+  id          String            @id @default(cuid())
+  protocol    String            @unique
+  companyId   String
+  category    ComplaintCategory
+  description String            @db.Text
+  status      ComplaintStatus   @default(OPEN)
+  notes       String?           @db.Text
+  reviewedAt  DateTime?
+  completedAt DateTime?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+}
+
+model ComplianceOverride {
+  id        String   @id @default(cuid())
+  companyId String
+  itemId    String
+  status    String
+  comment   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, itemId])
+}
