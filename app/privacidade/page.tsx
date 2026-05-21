@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Brain } from "lucide-react";
 
 export const metadata = { title: "Política de Privacidade — ComplyOn" };

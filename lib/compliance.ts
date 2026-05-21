@@ -1,4 +1,4 @@
-﻿export interface ComplianceBaseItem {
+export interface ComplianceBaseItem {
   id: string;
   title: string;
   description: string;

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { Brain, CreditCard, Users, CheckCircle, AlertTriangle, Loader2, ExternalLink } from "lucide-react";

@@ -1,4 +1,4 @@
-﻿import "server-only";
+import "server-only";
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 

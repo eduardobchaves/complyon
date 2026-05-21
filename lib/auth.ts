@@ -11,7 +11,6 @@ const loginSchema = z.object({
 });
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
   pages: {
@@ -41,8 +40,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           email: user.email,
           name: user.name,
           role: user.role,
-          companyId: user.companyId,
-          companySlug: user.company.slug,
+          companyId: user.companyId ?? null,
+          companySlug: user.company?.slug ?? null,
         };
       },
     }),

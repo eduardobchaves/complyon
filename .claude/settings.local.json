@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"ComplyOn\" . --include=\"*.ts\" --include=\"*.tsx\" --include=\"*.json\" --include=\"*.md\" ! -path \"*/node_modules/*\" ! -path \"*/.next/*\" -n)",
+      "Bash(grep *)"
+    ]
+  }
+}

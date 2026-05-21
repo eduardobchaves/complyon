@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { getRiskLabelFromScore, getScoreColor, getBgColorClass } from "@/lib/scoring";
 import { cn } from "@/lib/utils";

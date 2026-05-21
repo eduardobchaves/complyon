@@ -38,7 +38,7 @@ function maybePrune() {
   }
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   maybePrune();
 
   const { pathname } = req.nextUrl;
@@ -92,3 +92,4 @@ export const config = {
     "/api/auth/signin",
   ],
 };
+

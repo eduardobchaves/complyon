@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { LIKERT_SCALE } from "@/lib/questions";
 import { cn } from "@/lib/utils";
