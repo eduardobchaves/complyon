@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -39,10 +39,10 @@ export function ComplaintRow({ complaint }: ComplaintRowProps) {
   return (
     <TableRow>
       <TableCell>
-        <span className="font-mono text-xs text-purple-400">{complaint.protocol}</span>
+        <span className="font-mono text-xs text-green-400">{complaint.protocol}</span>
       </TableCell>
       <TableCell>
-        <span className="text-sm text-[#E9D5FF]">
+        <span className="text-sm text-[#dcfce7]">
           {categoryLabels[complaint.category] || complaint.category}
         </span>
       </TableCell>
@@ -62,7 +62,7 @@ export function ComplaintRow({ complaint }: ComplaintRowProps) {
       <TableCell>
         <Link
           href={`/complaints/${complaint.id}`}
-          className="inline-flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 transition-colors"
+          className="inline-flex items-center gap-1 text-xs text-green-400 hover:text-green-300 transition-colors"
         >
           Ver
           <ExternalLink className="h-3 w-3" />

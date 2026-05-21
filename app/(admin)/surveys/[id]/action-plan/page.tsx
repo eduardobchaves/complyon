@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -105,7 +105,7 @@ export default function ActionPlanPage() {
             </Button>
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+            <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
               Plano de Ação
             </h1>
             <p className="text-[#9CA3AF] mt-1">

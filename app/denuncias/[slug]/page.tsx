@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
@@ -57,7 +57,7 @@ export default function PublicComplaintPage() {
 
   if (protocol) {
     return (
-      <div className="min-h-screen bg-[#0F0A1A] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#1a1a2e] flex items-center justify-center p-4">
         <Card className="w-full max-w-md text-center">
           <CardContent className="pt-8 pb-6">
             <div className="mb-4 flex justify-center">
@@ -65,16 +65,16 @@ export default function PublicComplaintPage() {
                 <CheckCircle2 className="h-8 w-8 text-emerald-400" />
               </div>
             </div>
-            <h2 className="text-xl font-bold text-[#E9D5FF] mb-2 font-[var(--font-sora)]">Denúncia Registrada</h2>
+            <h2 className="text-xl font-bold text-[#dcfce7] mb-2 font-[var(--font-sora)]">Denúncia Registrada</h2>
             <p className="text-[#9CA3AF] text-sm mb-5">
               Sua denúncia foi registrada com sucesso. Guarde o número de protocolo para acompanhar o andamento.
             </p>
-            <div className="rounded-xl bg-[#221540] border border-purple-500/20 px-6 py-4 mb-5">
+            <div className="rounded-xl bg-[#252d45] border border-green-600/20 px-6 py-4 mb-5">
               <p className="text-xs text-[#9CA3AF] mb-1">Número de Protocolo</p>
-              <p className="text-2xl font-bold text-purple-300 font-mono tracking-widest">{protocol}</p>
+              <p className="text-2xl font-bold text-green-300 font-mono tracking-widest">{protocol}</p>
             </div>
             <p className="text-xs text-[#9CA3AF] mb-4">
-              Use este protocolo em <strong className="text-purple-400">/denuncias/status</strong> para consultar o andamento.
+              Use este protocolo em <strong className="text-green-400">/denuncias/status</strong> para consultar o andamento.
             </p>
             <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-3 text-xs text-emerald-300">
               🔒 Sua identidade é completamente protegida. Nenhum dado identificador foi armazenado.
@@ -86,46 +86,46 @@ export default function PublicComplaintPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F0A1A]">
-      <header className="border-b border-purple-500/20 bg-[#1A1030]">
+    <div className="min-h-screen bg-[#1a1a2e]">
+      <header className="border-b border-green-600/20 bg-[#1e2438]">
         <div className="mx-auto max-w-2xl flex items-center gap-3 px-4 py-4">
           <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600">
               <Brain className="h-4 w-4 text-white" />
             </div>
-            <span className="text-sm font-bold text-[#E9D5FF] font-[var(--font-sora)]">Canal de Denúncias — SafeMind</span>
+            <span className="text-sm font-bold text-[#dcfce7] font-[var(--font-sora)]">Canal de Denúncias — ComplyOn</span>
           </a>
         </div>
       </header>
 
       <main className="mx-auto max-w-2xl px-4 py-8 space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">Canal de Denúncias</h1>
+          <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">Canal de Denúncias</h1>
           <p className="mt-1 text-[#9CA3AF]">Reporte situações de assédio, discriminação ou irregularidades de forma anônima e segura.</p>
         </div>
 
         <div className="space-y-3">
-          <div className="rounded-xl border border-purple-500/20 bg-[#1A1030] p-4 flex items-start gap-3">
-            <Shield className="h-5 w-5 shrink-0 text-purple-400 mt-0.5" />
+          <div className="rounded-xl border border-green-600/20 bg-[#1e2438] p-4 flex items-start gap-3">
+            <Shield className="h-5 w-5 shrink-0 text-green-400 mt-0.5" />
             <div className="text-sm text-[#9CA3AF]">
-              <p className="font-medium text-[#E9D5FF] mb-1">Garantia de Anonimato</p>
+              <p className="font-medium text-[#dcfce7] mb-1">Garantia de Anonimato</p>
               <p>Sua identidade é completamente protegida. Não armazenamos IP, dispositivo ou qualquer dado que possa identificá-lo(a). Sua denúncia é tratada com absoluta confidencialidade.</p>
             </div>
           </div>
 
           {/* LGPD transparency notice — Art. 9 */}
           <div className="rounded-xl border border-blue-500/20 bg-blue-500/5 p-4 space-y-2 text-xs text-[#9CA3AF]">
-            <p className="font-medium text-[#E9D5FF] text-sm">Aviso de Privacidade (LGPD — Lei 13.709/2018)</p>
+            <p className="font-medium text-[#dcfce7] text-sm">Aviso de Privacidade (LGPD — Lei 13.709/2018)</p>
             <ul className="space-y-1.5 list-none">
-              <li><strong className="text-[#C4B5FD]">Dados coletados:</strong> apenas a categoria e a descrição que você informar. Nenhum dado pessoal identificável é coletado ou armazenado.</li>
-              <li><strong className="text-[#C4B5FD]">Finalidade:</strong> investigação interna de irregularidades e cumprimento das obrigações legais da empresa.</li>
-              <li><strong className="text-[#C4B5FD]">Base legal:</strong> cumprimento de obrigação legal (Art. 7º, II) e legítimo interesse na proteção de direitos (Art. 7º, IX).</li>
-              <li><strong className="text-[#C4B5FD]">Acesso:</strong> somente o(s) administrador(es) responsável(is) designado(s) pela empresa têm acesso ao conteúdo desta denúncia.</li>
-              <li><strong className="text-[#C4B5FD]">Retenção:</strong> a denúncia é mantida pelo prazo necessário à investigação e ao prazo prescricional trabalhista (até 5 anos).</li>
-              <li><strong className="text-[#C4B5FD]">Seus direitos (Art. 18):</strong> como a denúncia é anônima, não é possível vinculá-la a uma identidade. Para exercer direitos de acesso ou exclusão, entre em contato com o encarregado de dados da empresa.</li>
+              <li><strong className="text-[#86efac]">Dados coletados:</strong> apenas a categoria e a descrição que você informar. Nenhum dado pessoal identificável é coletado ou armazenado.</li>
+              <li><strong className="text-[#86efac]">Finalidade:</strong> investigação interna de irregularidades e cumprimento das obrigações legais da empresa.</li>
+              <li><strong className="text-[#86efac]">Base legal:</strong> cumprimento de obrigação legal (Art. 7º, II) e legítimo interesse na proteção de direitos (Art. 7º, IX).</li>
+              <li><strong className="text-[#86efac]">Acesso:</strong> somente o(s) administrador(es) responsável(is) designado(s) pela empresa têm acesso ao conteúdo desta denúncia.</li>
+              <li><strong className="text-[#86efac]">Retenção:</strong> a denúncia é mantida pelo prazo necessário à investigação e ao prazo prescricional trabalhista (até 5 anos).</li>
+              <li><strong className="text-[#86efac]">Seus direitos (Art. 18):</strong> como a denúncia é anônima, não é possível vinculá-la a uma identidade. Para exercer direitos de acesso ou exclusão, entre em contato com o encarregado de dados da empresa.</li>
             </ul>
             <p className="pt-1">
-              <a href="/privacidade" className="underline hover:text-purple-400" target="_blank" rel="noreferrer">
+              <a href="/privacidade" className="underline hover:text-green-400" target="_blank" rel="noreferrer">
                 Política de Privacidade completa
               </a>
             </p>

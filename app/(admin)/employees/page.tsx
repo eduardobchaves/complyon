@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -41,7 +41,7 @@ const roleLabels: Record<string, string> = {
   EMPLOYEE: "Colaborador",
 };
 
-const isErased = (email: string) => email.endsWith("@removido.safemind");
+const isErased = (email: string) => email.endsWith("@removido.complyon");
 
 export default function EmployeesPage() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -109,7 +109,7 @@ export default function EmployeesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">Colaboradores</h1>
+          <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">Colaboradores</h1>
           <p className="text-[#9CA3AF] mt-1">Gerencie os colaboradores da empresa</p>
         </div>
         <Button onClick={() => setDialogOpen(true)}>
@@ -269,7 +269,7 @@ export default function EmployeesPage() {
             </DialogTitle>
             <DialogDescription className="text-[#9CA3AF] pt-2">
               Esta ação é <strong className="text-white">irreversível</strong>. Todos os dados pessoais de{" "}
-              <strong className="text-[#E9D5FF]">{eraseTarget?.name || eraseTarget?.email}</strong> — nome e email — serão
+              <strong className="text-[#dcfce7]">{eraseTarget?.name || eraseTarget?.email}</strong> — nome e email — serão
               substituídos por um marcador anônimo, conforme exigido pelo Art. 18 da LGPD.
             </DialogDescription>
           </DialogHeader>

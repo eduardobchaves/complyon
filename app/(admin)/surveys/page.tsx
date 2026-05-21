@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+﻿import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
@@ -36,7 +36,7 @@ export default async function SurveysPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">Pesquisas</h1>
+          <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">Pesquisas</h1>
           <p className="text-[#9CA3AF] mt-1">Gerencie suas pesquisas de clima organizacional</p>
         </div>
         <Link href="/surveys/new">
@@ -71,12 +71,12 @@ export default async function SurveysPage() {
             const statusInfo = statusConfig[survey.status] || { label: survey.status, variant: "secondary" as const };
 
             return (
-              <Card key={survey.id} className="hover:border-purple-500/30 transition-colors">
+              <Card key={survey.id} className="hover:border-green-600/30 transition-colors">
                 <CardContent className="pt-6">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-[#E9D5FF] font-[var(--font-sora)]">
+                        <h3 className="font-semibold text-[#dcfce7] font-[var(--font-sora)]">
                           {survey.title}
                         </h3>
                         <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>

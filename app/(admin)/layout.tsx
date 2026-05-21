@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+﻿import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { Sidebar } from "@/components/admin/Sidebar";
@@ -26,7 +26,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="flex min-h-screen bg-[#0F0A1A]">
+    <div className="flex min-h-screen bg-[#1a1a2e]">
       <Sidebar companyName={company.name} plan={company.plan} />
       <main className="flex-1 flex flex-col min-w-0">
         <div className="flex-1 p-8">

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -49,22 +49,22 @@ export function Sidebar({ companyName, plan }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 min-h-screen bg-[#1A1030] border-r border-purple-500/10 flex flex-col">
+    <aside className="w-64 min-h-screen bg-[#1e2438] border-r border-green-600/10 flex flex-col">
       {/* Logo */}
-      <div className="p-6 border-b border-purple-500/10">
+      <div className="p-6 border-b border-green-600/10">
         <Link href="/dashboard" className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity">
-          <div className="w-9 h-9 rounded-lg bg-[#7C3AED] flex items-center justify-center flex-shrink-0">
+          <div className="w-9 h-9 rounded-lg bg-[#16a34a] flex items-center justify-center flex-shrink-0">
             <Brain className="h-5 w-5 text-white" />
           </div>
           <div className="min-w-0">
-            <p className="text-xs font-bold text-white tracking-wider font-[var(--font-sora)]">SAFEMIND</p>
-            <p className="text-xs text-purple-400">NR-01</p>
+            <p className="text-xs font-bold text-white tracking-wider font-[var(--font-sora)]">COMPLYON</p>
+            <p className="text-xs text-green-400">Conformidade NR-01</p>
           </div>
         </Link>
 
-        <div className="bg-[#221540] rounded-lg p-3">
+        <div className="bg-[#252d45] rounded-lg p-3">
           <p className="text-xs text-[#9CA3AF] mb-1">Empresa</p>
-          <p className="text-sm font-semibold text-[#E9D5FF] truncate">{companyName}</p>
+          <p className="text-sm font-semibold text-[#dcfce7] truncate">{companyName}</p>
           <div className="mt-2">
             <Badge variant={planColors[plan] as "secondary" | "default" | "success" | "info" || "secondary"} className="text-xs">
               {planLabels[plan] || plan}
@@ -86,11 +86,11 @@ export function Sidebar({ companyName, plan }: SidebarProps) {
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 group",
                 isActive
-                  ? "bg-[#7C3AED] text-white"
-                  : "text-[#9CA3AF] hover:bg-purple-500/10 hover:text-[#E9D5FF]"
+                  ? "bg-[#16a34a] text-white"
+                  : "text-[#9CA3AF] hover:bg-green-600/10 hover:text-[#dcfce7]"
               )}
             >
-              <Icon className={cn("h-4 w-4 flex-shrink-0", isActive ? "text-white" : "text-[#6B7280] group-hover:text-purple-400")} />
+              <Icon className={cn("h-4 w-4 flex-shrink-0", isActive ? "text-white" : "text-[#6B7280] group-hover:text-green-400")} />
               <span>{item.label}</span>
               {isActive && <ChevronRight className="h-3 w-3 ml-auto" />}
             </Link>
@@ -99,7 +99,7 @@ export function Sidebar({ companyName, plan }: SidebarProps) {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-purple-500/10">
+      <div className="p-4 border-t border-green-600/10">
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#9CA3AF] hover:bg-red-500/10 hover:text-red-400 transition-all duration-150 w-full"

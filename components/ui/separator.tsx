@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { cn } from "@/lib/utils";
 
 interface SeparatorProps extends React.HTMLAttributes<HTMLHRElement> {
@@ -13,7 +13,7 @@ const Separator = React.forwardRef<HTMLHRElement, SeparatorProps>(
       role={decorative ? "none" : "separator"}
       aria-orientation={orientation}
       className={cn(
-        "shrink-0 border-purple-500/10",
+        "shrink-0 border-green-600/10",
         orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px] border-l",
         className
       )}

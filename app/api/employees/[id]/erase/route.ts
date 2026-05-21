@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { syncCompanyUsage } from "@/lib/billing";
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     where: { id },
     data: {
       name: "Colaborador Removido",
-      email: `apagado_${id}@removido.safemind`,
+      email: `apagado_${id}@removido.complyon`,
       password: null,
       active: false,
       inviteToken: null,

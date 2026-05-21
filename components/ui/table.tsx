@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
@@ -14,7 +14,7 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b [&_tr]:border-purple-500/10", className)} {...props} />
+  <thead ref={ref} className={cn("[&_tr]:border-b [&_tr]:border-green-600/10", className)} {...props} />
 ));
 TableHeader.displayName = "TableHeader";
 
@@ -30,7 +30,7 @@ const TableFooter = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <tfoot ref={ref} className={cn("border-t border-purple-500/10 bg-[#221540]/50 font-medium", className)} {...props} />
+  <tfoot ref={ref} className={cn("border-t border-green-600/10 bg-[#252d45]/50 font-medium", className)} {...props} />
 ));
 TableFooter.displayName = "TableFooter";
 
@@ -39,7 +39,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
     <tr
       ref={ref}
       className={cn(
-        "border-b border-purple-500/10 transition-colors hover:bg-purple-500/5 data-[state=selected]:bg-purple-500/10",
+        "border-b border-green-600/10 transition-colors hover:bg-green-600/5 data-[state=selected]:bg-green-600/10",
         className
       )}
       {...props}
@@ -69,7 +69,7 @@ const TableCell = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <td
     ref={ref}
-    className={cn("px-4 py-3 align-middle text-[#E9D5FF] [&:has([role=checkbox])]:pr-0", className)}
+    className={cn("px-4 py-3 align-middle text-[#dcfce7] [&:has([role=checkbox])]:pr-0", className)}
     {...props}
   />
 ));

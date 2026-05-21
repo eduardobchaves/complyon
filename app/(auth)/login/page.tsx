@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
@@ -60,9 +60,9 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="border border-purple-500/20 bg-[#1A1030]">
+    <Card className="border border-green-600/20 bg-[#1e2438]">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+        <CardTitle className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
           Entrar na plataforma
         </CardTitle>
         <CardDescription className="text-[#9CA3AF]">
@@ -97,7 +97,7 @@ export default function LoginPage() {
               <Label htmlFor="password">Senha</Label>
               <Link
                 href="/forgot-password"
-                className="text-xs text-purple-400 hover:text-purple-300 transition-colors"
+                className="text-xs text-green-400 hover:text-green-300 transition-colors"
               >
                 Esqueceu a senha?
               </Link>

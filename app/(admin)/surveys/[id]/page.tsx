@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -217,7 +217,7 @@ export default function SurveyDetailPage() {
           </Link>
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+              <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
                 {survey.title as string}
               </h1>
               <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>
@@ -266,7 +266,7 @@ export default function SurveyDetailPage() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-sm">
-            <Link2 className="h-4 w-4 text-purple-400" />
+            <Link2 className="h-4 w-4 text-green-400" />
             Links de Acesso Anônimo
             <span className="ml-auto text-xs font-normal text-[#9CA3AF]">
               {tokens.filter((t) => t.usedAt).length}/{tokens.length} utilizados
@@ -275,10 +275,10 @@ export default function SurveyDetailPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Send by email */}
-          <div className="rounded-lg bg-purple-500/10 border border-purple-500/20 p-3 flex items-center gap-3">
-            <Mail className="h-4 w-4 text-purple-400 shrink-0" />
+          <div className="rounded-lg bg-green-600/10 border border-green-600/20 p-3 flex items-center gap-3">
+            <Mail className="h-4 w-4 text-green-400 shrink-0" />
             <div className="flex-1 text-xs text-[#9CA3AF]">
-              Enviar um link único por email para cada colaborador ativo cadastrado. O SafeMind guarda internamente quem recebeu qual link — o admin não tem acesso a essa informação.
+              Enviar um link único por email para cada colaborador ativo cadastrado. O ComplyOn guarda internamente quem recebeu qual link — o admin não tem acesso a essa informação.
             </div>
             <Button onClick={sendToEmployees} disabled={sendingEmails} size="sm" className="shrink-0">
               <Mail className="h-4 w-4" />
@@ -325,14 +325,14 @@ export default function SurveyDetailPage() {
 
           {tokens.length > 0 && (
             <div className="space-y-1.5">
-              <div className="max-h-72 overflow-y-auto space-y-1 border border-white/10 rounded-lg p-2 bg-[#0F0A1A]">
+              <div className="max-h-72 overflow-y-auto space-y-1 border border-white/10 rounded-lg p-2 bg-[#1a1a2e]">
                 {tokens.map((t, i) => (
                   <div key={t.id} className="flex items-center gap-2 text-xs font-mono group">
                     <span className="text-[#4B5563] w-5 shrink-0 text-right">{i + 1}.</span>
-                    <span className={`w-2 h-2 rounded-full shrink-0 ${t.usedAt ? "bg-emerald-400" : "bg-purple-400"}`} />
+                    <span className={`w-2 h-2 rounded-full shrink-0 ${t.usedAt ? "bg-emerald-400" : "bg-green-400"}`} />
                     {t.sentByEmail ? (
                       <span className="flex items-center gap-1.5 flex-1 text-[#9CA3AF]">
-                        <Mail className="h-3 w-3 text-purple-400 shrink-0" />
+                        <Mail className="h-3 w-3 text-green-400 shrink-0" />
                         <span className={t.usedAt ? "line-through text-[#4B5563]" : ""}>enviado por email</span>
                       </span>
                     ) : (
@@ -346,7 +346,7 @@ export default function SurveyDetailPage() {
                     {!t.usedAt && !t.sentByEmail && (
                       <button
                         onClick={() => copyLink(t.token)}
-                        className="shrink-0 text-[#6B7280] hover:text-purple-300 transition-colors opacity-0 group-hover:opacity-100"
+                        className="shrink-0 text-[#6B7280] hover:text-green-300 transition-colors opacity-0 group-hover:opacity-100"
                       >
                         {copiedToken === t.token ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
                       </button>
@@ -417,7 +417,7 @@ export default function SurveyDetailPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm">
-                  <MessageSquare className="h-4 w-4 text-purple-400" />
+                  <MessageSquare className="h-4 w-4 text-green-400" />
                   Respostas Abertas
                 </CardTitle>
               </CardHeader>
@@ -431,14 +431,14 @@ export default function SurveyDetailPage() {
 
                     return (
                       <div key={question.id}>
-                        <h4 className="text-sm font-medium text-[#E9D5FF] mb-3">
+                        <h4 className="text-sm font-medium text-[#dcfce7] mb-3">
                           {question.id}. {question.text}
                         </h4>
                         <div className="space-y-2 max-h-48 overflow-y-auto pr-2">
                           {qAnswers.map((a, i) => (
                             <div
                               key={i}
-                              className="bg-[#221540] rounded-lg p-3 text-sm text-[#9CA3AF]"
+                              className="bg-[#252d45] rounded-lg p-3 text-sm text-[#9CA3AF]"
                             >
                               {a.answer}
                             </div>

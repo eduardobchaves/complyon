@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { LIKERT_SCALE } from "@/lib/questions";
 import { cn } from "@/lib/utils";
@@ -22,13 +22,13 @@ export function LikertScale({ questionId, value, onChange }: LikertScaleProps) {
             className={cn(
               "flex flex-col items-center gap-2 p-3 rounded-xl border transition-all duration-200 text-center",
               isSelected
-                ? "bg-[#7C3AED] border-[#7C3AED] text-white shadow-lg shadow-purple-900/40"
-                : "bg-[#221540] border-purple-500/10 text-[#9CA3AF] hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-[#E9D5FF]"
+                ? "bg-[#16a34a] border-[#16a34a] text-white shadow-lg shadow-green-900/40"
+                : "bg-[#252d45] border-green-600/10 text-[#9CA3AF] hover:border-green-600/40 hover:bg-green-600/10 hover:text-[#dcfce7]"
             )}
           >
             <span className={cn(
               "text-lg font-bold font-mono",
-              isSelected ? "text-white" : "text-purple-400"
+              isSelected ? "text-white" : "text-green-400"
             )}>
               {option.value}
             </span>

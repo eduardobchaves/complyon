@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -96,11 +96,11 @@ export default function ComplaintDetailPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+          <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
             Denúncia
           </h1>
           <div className="flex items-center gap-3 mt-1">
-            <span className="font-mono text-sm text-purple-400">{complaint.protocol}</span>
+            <span className="font-mono text-sm text-green-400">{complaint.protocol}</span>
             <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>
           </div>
         </div>
@@ -110,27 +110,27 @@ export default function ComplaintDetailPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-sm">
-            <Shield className="h-4 w-4 text-purple-400" />
+            <Shield className="h-4 w-4 text-green-400" />
             Detalhes da Denúncia
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
             <p className="text-xs text-[#9CA3AF] mb-1">Categoria</p>
-            <p className="text-sm font-medium text-[#E9D5FF]">
+            <p className="text-sm font-medium text-[#dcfce7]">
               {categoryLabels[complaint.category] || complaint.category}
             </p>
           </div>
           <div>
             <p className="text-xs text-[#9CA3AF] mb-1">Descrição</p>
-            <div className="bg-[#221540] rounded-lg p-4 text-sm text-[#E9D5FF] leading-relaxed">
+            <div className="bg-[#252d45] rounded-lg p-4 text-sm text-[#dcfce7] leading-relaxed">
               {complaint.description}
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
               <p className="text-xs text-[#9CA3AF] mb-1">Recebida em</p>
-              <p className="text-[#E9D5FF]">
+              <p className="text-[#dcfce7]">
                 {new Date(complaint.createdAt).toLocaleDateString("pt-BR", {
                   day: "2-digit",
                   month: "long",
@@ -143,7 +143,7 @@ export default function ComplaintDetailPage() {
             {complaint.reviewedAt && (
               <div>
                 <p className="text-xs text-[#9CA3AF] mb-1">Revisada em</p>
-                <p className="text-[#E9D5FF]">
+                <p className="text-[#dcfce7]">
                   {new Date(complaint.reviewedAt).toLocaleDateString("pt-BR")}
                 </p>
               </div>

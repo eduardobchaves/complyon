@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+﻿import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { aggregateResponseScores, calculateAllSphereScores, calculateOverallScore, getRiskLabelFromScore, getScoreColorClass } from "@/lib/scoring";
@@ -109,7 +109,7 @@ export default async function DashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">Dashboard</h1>
+          <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">Dashboard</h1>
           <p className="text-[#9CA3AF] mt-1">Visão geral do clima organizacional</p>
         </div>
         {activeSurvey && (
@@ -144,7 +144,7 @@ export default async function DashboardPage() {
                   <p className="text-xs text-[#9CA3AF] mt-1">{getRiskLabelFromScore(overallScore)}</p>
                 )}
               </div>
-              <BarChart2 className="h-8 w-8 text-purple-500/40" />
+              <BarChart2 className="h-8 w-8 text-green-600/40" />
             </div>
           </CardContent>
         </Card>
@@ -154,14 +154,14 @@ export default async function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[#9CA3AF] mb-1">Taxa de Resposta</p>
-                <p className="text-3xl font-bold text-[#E9D5FF] font-mono">
+                <p className="text-3xl font-bold text-[#dcfce7] font-mono">
                   {hasSurveyData ? `${responseRate}%` : "--"}
                 </p>
                 {hasSurveyData && (
                   <p className="text-xs text-[#9CA3AF] mt-1">{totalRespondents} respondentes</p>
                 )}
               </div>
-              <ClipboardList className="h-8 w-8 text-purple-500/40" />
+              <ClipboardList className="h-8 w-8 text-green-600/40" />
             </div>
           </CardContent>
         </Card>
@@ -171,10 +171,10 @@ export default async function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[#9CA3AF] mb-1">Colaboradores</p>
-                <p className="text-3xl font-bold text-[#E9D5FF] font-mono">{totalEmployees}</p>
+                <p className="text-3xl font-bold text-[#dcfce7] font-mono">{totalEmployees}</p>
                 <p className="text-xs text-[#9CA3AF] mt-1">ativos</p>
               </div>
-              <Users className="h-8 w-8 text-purple-500/40" />
+              <Users className="h-8 w-8 text-green-600/40" />
             </div>
           </CardContent>
         </Card>
@@ -189,7 +189,7 @@ export default async function DashboardPage() {
                 </p>
                 <p className="text-xs text-[#9CA3AF] mt-1">aguardando análise</p>
               </div>
-              <MessageSquare className="h-8 w-8 text-purple-500/40" />
+              <MessageSquare className="h-8 w-8 text-green-600/40" />
             </div>
           </CardContent>
         </Card>
@@ -239,7 +239,7 @@ export default async function DashboardPage() {
 
           {/* Sphere grid */}
           <div>
-            <h2 className="text-base font-semibold text-[#E9D5FF] mb-4 font-[var(--font-sora)]">
+            <h2 className="text-base font-semibold text-[#dcfce7] mb-4 font-[var(--font-sora)]">
               Detalhes por Esfera
             </h2>
             <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">

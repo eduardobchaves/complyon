@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { SPHERES } from "@/lib/questions";
@@ -75,15 +75,15 @@ export function ActionPlanCard({ plan, onUpdate }: ActionPlanCardProps) {
   };
 
   return (
-    <div className="bg-[#1A1030] border border-purple-500/10 rounded-xl overflow-hidden">
+    <div className="bg-[#1e2438] border border-green-600/10 rounded-xl overflow-hidden">
       <div
-        className="p-5 flex items-start gap-4 cursor-pointer hover:bg-[#221540]/50 transition-colors"
+        className="p-5 flex items-start gap-4 cursor-pointer hover:bg-[#252d45]/50 transition-colors"
         onClick={() => setExpanded(!expanded)}
       >
         <div className="text-2xl">{sphere?.icon}</div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h3 className="text-sm font-semibold text-[#E9D5FF] font-[var(--font-sora)]">
+            <h3 className="text-sm font-semibold text-[#dcfce7] font-[var(--font-sora)]">
               {plan.title}
             </h3>
             <Badge variant={riskColors[plan.riskLevel]}>
@@ -106,7 +106,7 @@ export function ActionPlanCard({ plan, onUpdate }: ActionPlanCardProps) {
       </div>
 
       {expanded && (
-        <div className="px-5 pb-5 border-t border-purple-500/10">
+        <div className="px-5 pb-5 border-t border-green-600/10">
           <div className="pt-4">
             <p className="text-sm text-[#9CA3AF] mb-4">{plan.description}</p>
 
@@ -170,11 +170,11 @@ export function ActionPlanCard({ plan, onUpdate }: ActionPlanCardProps) {
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="text-[#6B7280]">Responsável:</span>{" "}
-                    <span className="text-[#E9D5FF]">{plan.responsible || "Não definido"}</span>
+                    <span className="text-[#dcfce7]">{plan.responsible || "Não definido"}</span>
                   </div>
                   <div>
                     <span className="text-[#6B7280]">Prazo:</span>{" "}
-                    <span className="text-[#E9D5FF]">
+                    <span className="text-[#dcfce7]">
                       {plan.deadline
                         ? new Date(plan.deadline).toLocaleDateString("pt-BR")
                         : "Não definido"}
@@ -182,7 +182,7 @@ export function ActionPlanCard({ plan, onUpdate }: ActionPlanCardProps) {
                   </div>
                 </div>
                 {plan.notes && (
-                  <div className="bg-[#221540] rounded-lg p-3 text-sm text-[#9CA3AF]">
+                  <div className="bg-[#252d45] rounded-lg p-3 text-sm text-[#9CA3AF]">
                     {plan.notes}
                   </div>
                 )}

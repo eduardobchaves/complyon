@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+﻿import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -32,7 +32,7 @@ export default async function ComplaintsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+        <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
           Canal de Denúncias
         </h1>
         <p className="text-[#9CA3AF] mt-1">

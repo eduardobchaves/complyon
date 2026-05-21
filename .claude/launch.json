@@ -1,10 +1,10 @@
-{
+﻿{
   "configurations": [
     {
-      "name": "SafeMind NR-01",
+      "name": "ComplyOn",
       "command": "npm run dev",
       "port": 3000,
-      "cwd": "/home/user/projects/safemind-nr1"
+      "cwd": "/home/user/projects/complyon"
     }
   ]
 }

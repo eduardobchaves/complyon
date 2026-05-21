@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { getRiskLabelFromScore, getScoreColor, getBgColorClass } from "@/lib/scoring";
 import { cn } from "@/lib/utils";
@@ -21,15 +21,15 @@ export function SphereCard({ sphereId, score, riskLevel, onClick }: SphereCardPr
     <div
       onClick={onClick}
       className={cn(
-        "bg-[#1A1030] border border-purple-500/10 rounded-xl p-5 hover:border-purple-500/30 transition-all duration-200",
-        onClick && "cursor-pointer hover:bg-[#221540]"
+        "bg-[#1e2438] border border-green-600/10 rounded-xl p-5 hover:border-green-600/30 transition-all duration-200",
+        onClick && "cursor-pointer hover:bg-[#252d45]"
       )}
     >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-2">
           <span className="text-xl">{sphere?.icon}</span>
           <div>
-            <h3 className="text-sm font-semibold text-[#E9D5FF] font-[var(--font-sora)]">
+            <h3 className="text-sm font-semibold text-[#dcfce7] font-[var(--font-sora)]">
               {sphere?.name || sphereId}
             </h3>
             <p className="text-xs text-[#9CA3AF] mt-0.5">{sphere?.description}</p>
@@ -44,7 +44,7 @@ export function SphereCard({ sphereId, score, riskLevel, onClick }: SphereCardPr
             <circle
               cx="18" cy="18" r="15.9"
               fill="none"
-              stroke="#221540"
+              stroke="#252d45"
               strokeWidth="3"
             />
             <circle
@@ -76,7 +76,7 @@ export function SphereCard({ sphereId, score, riskLevel, onClick }: SphereCardPr
           </div>
 
           {/* Bar */}
-          <div className="mt-2 h-1.5 bg-[#221540] rounded-full overflow-hidden">
+          <div className="mt-2 h-1.5 bg-[#252d45] rounded-full overflow-hidden">
             <div
               className="h-full rounded-full transition-all duration-700"
               style={{ width: `${pct}%`, backgroundColor: color }}

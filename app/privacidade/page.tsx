@@ -1,39 +1,39 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Brain } from "lucide-react";
 
-export const metadata = { title: "Política de Privacidade — SafeMind NR-01" };
+export const metadata = { title: "Política de Privacidade — ComplyOn" };
 
 export default function PrivacidadePage() {
   return (
-    <div className="min-h-screen bg-[#0F0A1A] text-white">
-      <header className="border-b border-purple-500/20 bg-[#1A1030]">
+    <div className="min-h-screen bg-[#1a1a2e] text-white">
+      <header className="border-b border-green-600/20 bg-[#1e2438]">
         <div className="mx-auto max-w-3xl flex items-center justify-between px-4 py-4">
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600">
               <Brain className="h-4 w-4 text-white" />
             </div>
-            <span className="font-bold text-[#E9D5FF] font-[var(--font-sora)]">SafeMind NR-01</span>
+            <span className="font-bold text-[#dcfce7] font-[var(--font-sora)]">ComplyOn</span>
           </Link>
-          <Link href="/login" className="text-xs text-purple-400 hover:text-purple-300">Acessar plataforma</Link>
+          <Link href="/login" className="text-xs text-green-400 hover:text-green-300">Acessar plataforma</Link>
         </div>
       </header>
 
       <main className="mx-auto max-w-3xl px-4 py-12 space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">Política de Privacidade</h1>
+          <h1 className="text-3xl font-bold text-[#dcfce7] font-[var(--font-sora)]">Política de Privacidade</h1>
           <p className="text-[#9CA3AF] mt-2 text-sm">Última atualização: maio de 2026 — em conformidade com a LGPD (Lei 13.709/2018)</p>
         </div>
 
         <Section title="1. Quem somos">
           <p>
-            A <strong>SafeMind</strong> ("Operador") é a empresa responsável pela plataforma SafeMind NR-01, que oferece ferramentas de
+            A <strong>ComplyOn</strong> ("Operador") é a empresa responsável pela plataforma ComplyOn, que oferece ferramentas de
             gestão de saúde mental e conformidade trabalhista às empresas clientes ("Controladores"). Cada empresa contratante é o
-            Controlador dos dados de seus próprios colaboradores; a SafeMind atua como Operador no tratamento desses dados.
+            Controlador dos dados de seus próprios colaboradores; a ComplyOn atua como Operador no tratamento desses dados.
           </p>
           <p className="mt-3">
             <strong>Encarregado de Dados (DPO):</strong> [Nome do responsável]<br />
-            <strong>E-mail:</strong> privacidade@safemind.com.br<br />
-            <strong>Endereço:</strong> [Endereço completo da SafeMind]
+            <strong>E-mail:</strong> privacidade@complyon.com.br<br />
+            <strong>Endereço:</strong> [Endereço completo da ComplyOn]
           </p>
         </Section>
 
@@ -49,7 +49,7 @@ export default function PrivacidadePage() {
             ]}
           />
           <p className="mt-4 text-sm text-[#9CA3AF]">
-            <strong className="text-[#E9D5FF]">Dados de saúde (dados sensíveis):</strong> As respostas às pesquisas de bem-estar
+            <strong className="text-[#dcfce7]">Dados de saúde (dados sensíveis):</strong> As respostas às pesquisas de bem-estar
             mental são classificadas como dados sensíveis nos termos do Art. 5º, II da LGPD. O seu tratamento ocorre com base na
             obrigação legal da NR-01 e, quando exigido pelo Art. 11, no consentimento explícito do titular obtido antes do início
             de cada pesquisa.
@@ -69,11 +69,11 @@ export default function PrivacidadePage() {
         </Section>
 
         <Section title="4. Compartilhamento com terceiros">
-          <p>A SafeMind utiliza os seguintes suboperadores para prestação do serviço:</p>
+          <p>A ComplyOn utiliza os seguintes suboperadores para prestação do serviço:</p>
           <ul className="mt-3 space-y-2 text-sm">
-            <li><strong className="text-[#E9D5FF]">Stripe Inc. (EUA)</strong> — processamento de pagamentos. Dados compartilhados: nome e e-mail do administrador da empresa. Transferência internacional coberta por Cláusulas Contratuais Padrão.</li>
-            <li><strong className="text-[#E9D5FF]">Resend Inc. (EUA)</strong> — envio de e-mails transacionais. Dados compartilhados: e-mail dos colaboradores (somente para envio de convite de pesquisa). Transferência internacional coberta por Cláusulas Contratuais Padrão.</li>
-            <li><strong className="text-[#E9D5FF]">Provedor de infraestrutura (banco de dados e hospedagem)</strong> — armazenamento de todos os dados da plataforma. O provedor contratado e sua localização são informados sob solicitação ao DPO.</li>
+            <li><strong className="text-[#dcfce7]">Stripe Inc. (EUA)</strong> — processamento de pagamentos. Dados compartilhados: nome e e-mail do administrador da empresa. Transferência internacional coberta por Cláusulas Contratuais Padrão.</li>
+            <li><strong className="text-[#dcfce7]">Resend Inc. (EUA)</strong> — envio de e-mails transacionais. Dados compartilhados: e-mail dos colaboradores (somente para envio de convite de pesquisa). Transferência internacional coberta por Cláusulas Contratuais Padrão.</li>
+            <li><strong className="text-[#dcfce7]">Provedor de infraestrutura (banco de dados e hospedagem)</strong> — armazenamento de todos os dados da plataforma. O provedor contratado e sua localização são informados sob solicitação ao DPO.</li>
           </ul>
           <p className="mt-3 text-sm text-[#9CA3AF]">
             Não vendemos, alugamos ou compartilhamos dados pessoais com terceiros para fins comerciais ou de marketing.
@@ -102,7 +102,7 @@ export default function PrivacidadePage() {
           </ul>
           <p className="mt-4 text-sm">
             Para exercer qualquer desses direitos, entre em contato com:{" "}
-            <a href="mailto:privacidade@safemind.com.br" className="text-purple-400 underline">privacidade@safemind.com.br</a>.
+            <a href="mailto:privacidade@complyon.com.br" className="text-green-400 underline">privacidade@complyon.com.br</a>.
             Responderemos em até 15 dias corridos (Art. 19, §3º).
           </p>
         </Section>
@@ -140,23 +140,23 @@ export default function PrivacidadePage() {
           </p>
           <p className="mt-2">
             📧{" "}
-            <a href="mailto:privacidade@safemind.com.br" className="text-purple-400 underline">
-              privacidade@safemind.com.br
+            <a href="mailto:privacidade@complyon.com.br" className="text-green-400 underline">
+              privacidade@complyon.com.br
             </a>
           </p>
           <p className="mt-3 text-sm text-[#9CA3AF]">
             Você também tem o direito de peticionar à Autoridade Nacional de Proteção de Dados (ANPD) em caso de descumprimento
             desta política:{" "}
-            <a href="https://www.gov.br/anpd" target="_blank" rel="noreferrer" className="text-purple-400 underline">
+            <a href="https://www.gov.br/anpd" target="_blank" rel="noreferrer" className="text-green-400 underline">
               www.gov.br/anpd
             </a>.
           </p>
         </Section>
 
-        <div className="border-t border-purple-500/10 pt-6 text-center">
-          <Link href="/termos" className="text-xs text-purple-400 hover:underline">Termos de Uso</Link>
+        <div className="border-t border-green-600/10 pt-6 text-center">
+          <Link href="/termos" className="text-xs text-green-400 hover:underline">Termos de Uso</Link>
           <span className="text-[#6B7280] mx-2">·</span>
-          <Link href="/" className="text-xs text-[#6B7280] hover:text-purple-400">Página inicial</Link>
+          <Link href="/" className="text-xs text-[#6B7280] hover:text-green-400">Página inicial</Link>
         </div>
       </main>
     </div>
@@ -166,7 +166,7 @@ export default function PrivacidadePage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="space-y-3">
-      <h2 className="text-lg font-semibold text-[#E9D5FF] border-b border-purple-500/20 pb-2">{title}</h2>
+      <h2 className="text-lg font-semibold text-[#dcfce7] border-b border-green-600/20 pb-2">{title}</h2>
       <div className="text-[#9CA3AF] text-sm leading-relaxed space-y-2">{children}</div>
     </section>
   );
@@ -174,18 +174,18 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-purple-500/20">
+    <div className="overflow-x-auto rounded-lg border border-green-600/20">
       <table className="w-full text-xs">
-        <thead className="bg-[#221540]">
+        <thead className="bg-[#252d45]">
           <tr>
             {headers.map(h => (
-              <th key={h} className="px-3 py-2 text-left text-[#C4B5FD] font-medium">{h}</th>
+              <th key={h} className="px-3 py-2 text-left text-[#86efac] font-medium">{h}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {rows.map((row, i) => (
-            <tr key={i} className="border-t border-purple-500/10">
+            <tr key={i} className="border-t border-green-600/10">
               {row.map((cell, j) => (
                 <td key={j} className="px-3 py-2 text-[#9CA3AF]">{cell}</td>
               ))}
