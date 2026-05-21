@@ -45,13 +45,7 @@ export default function LoginPage() {
       if (result?.error) {
         setError("Email ou senha inválidos. Verifique seus dados e tente novamente.");
       } else {
-        const session = await fetch("/api/auth/session").then(r => r.json());
-        const role = session?.user?.role;
-        if (role === "EMPLOYEE") {
-          router.push("/survey");
-        } else {
-          router.push("/dashboard");
-        }
+        router.push("/dashboard");
         router.refresh();
       }
     } catch {
@@ -80,25 +74,14 @@ export default function LoginPage() {
 
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="seu@email.com"
-              autoComplete="email"
-              {...register("email")}
-            />
-            {errors.email && (
-              <p className="text-xs text-red-400">{errors.email.message}</p>
-            )}
+            <Input id="email" type="email" placeholder="seu@email.com" autoComplete="email" {...register("email")} />
+            {errors.email && <p className="text-xs text-red-400">{errors.email.message}</p>}
           </div>
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label htmlFor="password">Senha</Label>
-              <Link
-                href="/forgot-password"
-                className="text-xs text-purple-400 hover:text-purple-300 transition-colors"
-              >
+              <Link href="/forgot-password" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">
                 Esqueceu a senha?
               </Link>
             </div>
@@ -119,21 +102,22 @@ export default function LoginPage() {
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
             </div>
-            {errors.password && (
-              <p className="text-xs text-red-400">{errors.password.message}</p>
-            )}
+            {errors.password && <p className="text-xs text-red-400">{errors.password.message}</p>}
           </div>
         </CardContent>
 
         <CardFooter className="flex flex-col gap-4">
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <LogIn className="h-4 w-4" />
-            )}
+            {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <LogIn className="h-4 w-4" />}
             {isSubmitting ? "Entrando..." : "Entrar"}
           </Button>
+
+          <p className="text-center text-sm text-[#9CA3AF]">
+            Primeira vez?{" "}
+            <Link href="/ativar" className="text-purple-400 hover:text-purple-300 font-medium transition-colors">
+              Registre aqui
+            </Link>
+          </p>
         </CardFooter>
       </form>
     </Card>

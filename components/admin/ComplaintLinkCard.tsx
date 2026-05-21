@@ -30,7 +30,7 @@ export function ComplaintLinkCard({ slug }: { slug: string }) {
         <p className="text-xs text-[#9CA3AF]">
           Distribua este link a todos os colaboradores. Qualquer pessoa com o link pode registrar uma denúncia anônima a qualquer momento, sem precisar de login.
         </p>
-        <div className="flex items-center gap-2 rounded-lg bg-[#0F0A1A] border border-white/10 px-3 py-2">
+        <div className="flex items-center gap-2 rounded-lg bg-[#1a1a2e] border border-white/10 px-3 py-2">
           <span className="flex-1 truncate text-sm font-mono text-[#9CA3AF]">{displayUrl}</span>
           <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={copy}>
             {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}

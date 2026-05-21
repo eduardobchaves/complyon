@@ -2,12 +2,12 @@
 @plugin "tailwindcss-animate";
 
 :root {
-  --background: #0F0A1A;
-  --foreground: #E9D5FF;
-  --surface: #1A1030;
-  --surface-2: #221540;
-  --border: rgba(168, 85, 247, 0.2);
-  --primary: #7C3AED;
+  --background: #1a1a2e;
+  --foreground: #dcfce7;
+  --surface: #1e2438;
+  --surface-2: #252d45;
+  --border: rgba(22, 163, 74, 0.2);
+  --primary: #16a34a;
   --muted: #9CA3AF;
 }
 
@@ -37,12 +37,12 @@ body {
   background: var(--surface);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.4);
+  background: rgba(22, 163, 74, 0.4);
   border-radius: 3px;
 }
 
 .glass {
-  background: rgba(26, 16, 48, 0.8);
+  background: rgba(26, 26, 46, 0.8);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(22, 163, 74, 0.2);
 }

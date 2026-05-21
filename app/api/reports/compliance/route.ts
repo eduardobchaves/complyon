@@ -57,13 +57,13 @@ export async function GET(_req: NextRequest) {
 
   const itemRows = effectiveItems.map(item => `
     <tr>
-      <td style="font-weight:700;color:#7C3AED;white-space:nowrap">${item.id}</td>
+      <td style="font-weight:700;color:#16a34a;white-space:nowrap">${item.id}</td>
       <td>
-        <div style="font-weight:600;margin-bottom:3px">${item.title}${item.isManual ? ' <span style="font-size:10px;color:#7C3AED;border:1px solid #7C3AED;border-radius:3px;padding:1px 4px">manual</span>' : ""}</div>
+        <div style="font-weight:600;margin-bottom:3px">${item.title}${item.isManual ? ' <span style="font-size:10px;color:#16a34a;border:1px solid #16a34a;border-radius:3px;padding:1px 4px">manual</span>' : ""}</div>
         <div style="color:#6B7280;font-size:11px">${item.description}</div>
         ${item.comment ? `<div style="margin-top:4px;font-size:11px;color:#6B7280;font-style:italic">💬 ${item.comment}</div>` : ""}
       </td>
-      <td style="font-size:11px;color:#7C3AED;font-weight:500;white-space:nowrap">${item.legalRef}</td>
+      <td style="font-size:11px;color:#16a34a;font-weight:500;white-space:nowrap">${item.legalRef}</td>
       <td><span style="display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:600;background:${STATUS_BG[item.effectiveStatus]};color:${STATUS_COLOR[item.effectiveStatus]}">${STATUS_LABEL[item.effectiveStatus]}</span></td>
     </tr>`).join("");
 
@@ -81,11 +81,11 @@ export async function GET(_req: NextRequest) {
       body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
     .container { max-width: 900px; margin: 0 auto; padding: 32px; }
-    .header { border-bottom: 3px solid #7C3AED; padding-bottom: 20px; margin-bottom: 24px; }
+    .header { border-bottom: 3px solid #16a34a; padding-bottom: 20px; margin-bottom: 24px; }
     .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
     .brand { display: flex; align-items: center; gap: 10px; }
-    .brand-icon { width: 40px; height: 40px; background: #7C3AED; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 20px; }
-    .brand-name { font-size: 18px; font-weight: 800; color: #7C3AED; letter-spacing: 0.05em; }
+    .brand-icon { width: 40px; height: 40px; background: #16a34a; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 20px; }
+    .brand-name { font-size: 18px; font-weight: 800; color: #16a34a; letter-spacing: 0.05em; }
     .brand-sub { font-size: 11px; color: #6B7280; }
     .report-meta { text-align: right; font-size: 11px; color: #6B7280; line-height: 1.8; }
     .company-name { font-size: 22px; font-weight: 700; color: #111; margin-top: 16px; }
@@ -102,8 +102,8 @@ export async function GET(_req: NextRequest) {
     th { background: #F9FAFB; text-align: left; padding: 9px 10px; border-bottom: 2px solid #E5E7EB; font-weight: 600; color: #374151; }
     td { padding: 9px 10px; border-bottom: 1px solid #F3F4F6; vertical-align: top; color: #374151; }
     .footer { margin-top: 32px; border-top: 1px solid #E5E7EB; padding-top: 16px; font-size: 11px; color: #9CA3AF; text-align: center; line-height: 1.8; }
-    .print-btn { position: fixed; bottom: 24px; right: 24px; background: #7C3AED; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 14px rgba(124,58,237,0.4); }
-    .print-btn:hover { background: #6D28D9; }
+    .print-btn { position: fixed; bottom: 24px; right: 24px; background: #16a34a; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 14px rgba(22,163,74,0.4); }
+    .print-btn:hover { background: #15803d; }
   </style>
 </head>
 <body>
@@ -113,7 +113,7 @@ export async function GET(_req: NextRequest) {
         <div class="brand">
           <div class="brand-icon">S</div>
           <div>
-            <div class="brand-name">SAFEMIND</div>
+            <div class="brand-name">COMPLYON</div>
             <div class="brand-sub">NR-01 — Gestão de Saúde Mental</div>
           </div>
         </div>
@@ -128,7 +128,7 @@ export async function GET(_req: NextRequest) {
     </div>
 
     <div class="summary">
-      <div class="stat-card" style="border-color:#7C3AED">
+      <div class="stat-card" style="border-color:#16a34a">
         <div class="stat-label">Conformidade Geral</div>
         <div class="stat-value" style="color:${scoreColor}">${compliancePct}%</div>
         <div class="progress-bg"><div class="progress-fill" style="width:${compliancePct}%;background:${scoreColor}"></div></div>
@@ -176,7 +176,7 @@ export async function GET(_req: NextRequest) {
     </table>
 
     <div class="footer">
-      <p><strong>SafeMind NR-01</strong> — Plataforma de Gestão de Saúde Mental e Conformidade</p>
+      <p><strong>ComplyOn</strong> — Plataforma de Gestão de Saúde Mental e Conformidade</p>
       <p>Este relatório é gerado automaticamente com base nos dados cadastrados na plataforma na data de emissão.</p>
       <p>Não substitui parecer jurídico ou avaliação técnica especializada. Vigência NR-01: conforme portaria MTE/2024.</p>
     </div>

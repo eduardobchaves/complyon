@@ -21,9 +21,9 @@ interface TrendLineChartProps {
 const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number }>; label?: string }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#1A1030] border border-purple-500/20 rounded-lg px-4 py-3 shadow-xl">
+      <div className="bg-[#1e2438] border border-green-600/20 rounded-lg px-4 py-3 shadow-xl">
         <p className="text-xs text-[#9CA3AF] mb-1">{label}</p>
-        <p className="text-lg font-bold text-purple-300">{payload[0].value.toFixed(1)}</p>
+        <p className="text-lg font-bold text-green-300">{payload[0].value.toFixed(1)}</p>
       </div>
     );
   }
@@ -36,7 +36,7 @@ export function TrendLineChart({ data }: TrendLineChartProps) {
       <LineChart data={data} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
         <defs>
           <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#7C3AED" />
+            <stop offset="0%" stopColor="#16a34a" />
             <stop offset="100%" stopColor="#06B6D4" />
           </linearGradient>
         </defs>
@@ -59,7 +59,7 @@ export function TrendLineChart({ data }: TrendLineChartProps) {
           dataKey="score"
           stroke="url(#lineGradient)"
           strokeWidth={2.5}
-          dot={{ fill: "#7C3AED", strokeWidth: 2, r: 4 }}
+          dot={{ fill: "#16a34a", strokeWidth: 2, r: 4 }}
           activeDot={{ r: 6, fill: "#A78BFA" }}
         />
       </LineChart>

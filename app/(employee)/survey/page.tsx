@@ -46,7 +46,7 @@ export default function SurveyPage() {
   if (loading) {
     return (
       <div className="flex justify-center py-20">
-        <Loader2 className="h-10 w-10 animate-spin text-purple-400" />
+        <Loader2 className="h-10 w-10 animate-spin text-green-400" />
       </div>
     );
   }
@@ -55,7 +55,7 @@ export default function SurveyPage() {
     return (
       <div className="text-center py-20">
         <div className="mb-4 text-6xl">📋</div>
-        <h2 className="text-2xl font-bold text-[#E9D5FF] mb-3 font-[var(--font-sora)]">
+        <h2 className="text-2xl font-bold text-[#dcfce7] mb-3 font-[var(--font-sora)]">
           Nenhuma pesquisa aberta
         </h2>
         <p className="text-[#9CA3AF] max-w-md mx-auto">
@@ -105,7 +105,7 @@ export default function SurveyPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">{survey.title}</h1>
+        <h1 className="text-xl font-bold text-[#dcfce7] font-[var(--font-sora)]">{survey.title}</h1>
         <p className="text-sm text-[#9CA3AF] mt-1">Suas respostas são 100% anônimas</p>
       </div>
 
@@ -166,10 +166,10 @@ export default function SurveyPage() {
                 max={10}
                 value={stressLevel}
                 onChange={e => setStressLevel(Number(e.target.value))}
-                className="flex-1 accent-purple-500"
+                className="flex-1 accent-green-600"
               />
               <span className="text-sm text-[#9CA3AF]">10</span>
-              <span className="w-8 text-center text-lg font-bold text-purple-300 font-mono">{stressLevel}</span>
+              <span className="w-8 text-center text-lg font-bold text-green-300 font-mono">{stressLevel}</span>
             </div>
           </QuestionCard>
 

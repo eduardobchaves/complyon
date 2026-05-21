@@ -57,7 +57,7 @@ export async function getOrCreateTieredPriceId(): Promise<string> {
       up_to: t.upTo === Infinity ? ("inf" as const) : t.upTo,
       unit_amount: t.unitCents,
     })),
-    product_data: { name: "SafeMind NR-01 — por colaborador" },
+    product_data: { name: "ComplyOn — por colaborador" },
   });
 
   console.log(`[billing] Created Stripe tiered price. Add to .env: STRIPE_METERED_PRICE_ID=${price.id}`);

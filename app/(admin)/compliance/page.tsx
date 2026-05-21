@@ -48,7 +48,7 @@ export default function CompliancePage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+          <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
             Conformidade NR-01
           </h1>
           <p className="text-[#9CA3AF] mt-1">Acompanhe o cumprimento das exigências da NR-01</p>
@@ -88,14 +88,14 @@ export default function CompliancePage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-sm">
-            <Shield className="h-4 w-4 text-purple-400" />
+            <Shield className="h-4 w-4 text-green-400" />
             Lista de Verificação NR-01
           </CardTitle>
         </CardHeader>
         <CardContent>
           {loading ? (
             <div className="flex justify-center py-8">
-              <Loader2 className="h-6 w-6 animate-spin text-purple-400" />
+              <Loader2 className="h-6 w-6 animate-spin text-green-400" />
             </div>
           ) : (
             <div className="space-y-3">
@@ -112,9 +112,9 @@ export default function CompliancePage() {
         </CardContent>
       </Card>
 
-      <div className="bg-[#221540] rounded-xl p-4 border border-purple-500/10">
+      <div className="bg-[#252d45] rounded-xl p-4 border border-green-600/10">
         <p className="text-xs text-[#9CA3AF]">
-          <span className="text-purple-400 font-medium">Nota legal:</span> Esta análise é baseada nos dados da plataforma SafeMind e serve como orientação.
+          <span className="text-green-400 font-medium">Nota legal:</span> Esta análise é baseada nos dados da plataforma ComplyOn e serve como orientação.
           Consulte um especialista em segurança do trabalho para uma avaliação completa de conformidade com a NR-01.
           Vigência: conforme portaria MTE publicada em 2024.
         </p>

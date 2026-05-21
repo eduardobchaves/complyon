@@ -65,7 +65,7 @@ export default function NewSurveyPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+          <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
             Nova Pesquisa
           </h1>
           <p className="text-[#9CA3AF] mt-1">Crie uma pesquisa de clima organizacional</p>
@@ -75,7 +75,7 @@ export default function NewSurveyPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <ClipboardList className="h-5 w-5 text-purple-400" />
+            <ClipboardList className="h-5 w-5 text-green-400" />
             Detalhes da Pesquisa
           </CardTitle>
           <CardDescription>
@@ -132,8 +132,8 @@ export default function NewSurveyPage() {
               </div>
             </div>
 
-            <div className="bg-[#221540] rounded-lg p-4 text-sm text-[#9CA3AF]">
-              <p className="font-medium text-[#E9D5FF] mb-2">📋 O que será aplicado:</p>
+            <div className="bg-[#252d45] rounded-lg p-4 text-sm text-[#9CA3AF]">
+              <p className="font-medium text-[#dcfce7] mb-2">📋 O que será aplicado:</p>
               <ul className="space-y-1">
                 <li>• 21 perguntas de escala Likert em 8 esferas</li>
                 <li>• 4 questões abertas e especiais</li>

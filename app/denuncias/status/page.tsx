@@ -78,21 +78,21 @@ export default function ComplaintStatusPage() {
   const statusInfo = result ? statusConfig[result.status] : null;
 
   return (
-    <div className="min-h-screen bg-[#0F0A1A]">
-      <header className="border-b border-purple-500/20 bg-[#1A1030]">
+    <div className="min-h-screen bg-[#1a1a2e]">
+      <header className="border-b border-green-600/20 bg-[#1e2438]">
         <div className="mx-auto max-w-2xl flex items-center gap-3 px-4 py-4">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600">
             <Brain className="h-4 w-4 text-white" />
           </div>
-          <span className="text-sm font-bold text-[#E9D5FF] font-[var(--font-sora)]">
-            Consultar Denúncia — SafeMind
+          <span className="text-sm font-bold text-[#dcfce7] font-[var(--font-sora)]">
+            Consultar Denúncia — ComplyOn
           </span>
         </div>
       </header>
 
       <main className="mx-auto max-w-2xl px-4 py-8 space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+          <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
             Consultar Status da Denúncia
           </h1>
           <p className="mt-1 text-[#9CA3AF]">
@@ -100,10 +100,10 @@ export default function ComplaintStatusPage() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-purple-500/20 bg-[#1A1030] p-4 flex items-start gap-3">
-          <Shield className="h-5 w-5 shrink-0 text-purple-400 mt-0.5" />
+        <div className="rounded-xl border border-green-600/20 bg-[#1e2438] p-4 flex items-start gap-3">
+          <Shield className="h-5 w-5 shrink-0 text-green-400 mt-0.5" />
           <div className="text-sm text-[#9CA3AF]">
-            <p className="font-medium text-[#E9D5FF] mb-1">Consulta Anônima</p>
+            <p className="font-medium text-[#dcfce7] mb-1">Consulta Anônima</p>
             <p>A consulta por protocolo não revela nenhum dado identificador. Apenas o status e as informações da denúncia são exibidos.</p>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function ComplaintStatusPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex items-center gap-2">
-              <Search className="h-4 w-4 text-purple-400" />
+              <Search className="h-4 w-4 text-green-400" />
               Buscar por Protocolo
             </CardTitle>
           </CardHeader>
@@ -159,15 +159,15 @@ export default function ComplaintStatusPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-[#9CA3AF] mb-1">Protocolo</p>
-                  <p className="text-sm font-mono font-bold text-purple-300">{result.protocol}</p>
+                  <p className="text-sm font-mono font-bold text-green-300">{result.protocol}</p>
                 </div>
                 <div>
                   <p className="text-xs text-[#9CA3AF] mb-1">Categoria</p>
-                  <p className="text-sm text-[#E9D5FF]">{categoryLabels[result.category] || result.category}</p>
+                  <p className="text-sm text-[#dcfce7]">{categoryLabels[result.category] || result.category}</p>
                 </div>
                 <div>
                   <p className="text-xs text-[#9CA3AF] mb-1">Registrada em</p>
-                  <p className="text-sm text-[#E9D5FF]">
+                  <p className="text-sm text-[#dcfce7]">
                     {new Date(result.createdAt).toLocaleDateString("pt-BR", {
                       day: "2-digit",
                       month: "long",
@@ -178,7 +178,7 @@ export default function ComplaintStatusPage() {
                 {result.reviewedAt && (
                   <div>
                     <p className="text-xs text-[#9CA3AF] mb-1">Em análise desde</p>
-                    <p className="text-sm text-[#E9D5FF]">
+                    <p className="text-sm text-[#dcfce7]">
                       {new Date(result.reviewedAt).toLocaleDateString("pt-BR")}
                     </p>
                   </div>
@@ -186,14 +186,14 @@ export default function ComplaintStatusPage() {
                 {result.completedAt && (
                   <div>
                     <p className="text-xs text-[#9CA3AF] mb-1">Concluída em</p>
-                    <p className="text-sm text-[#E9D5FF]">
+                    <p className="text-sm text-[#dcfce7]">
                       {new Date(result.completedAt).toLocaleDateString("pt-BR")}
                     </p>
                   </div>
                 )}
               </div>
 
-              <div className="rounded-lg border border-purple-500/10 bg-[#221540] p-3 text-sm text-[#9CA3AF]">
+              <div className="rounded-lg border border-green-600/10 bg-[#252d45] p-3 text-sm text-[#9CA3AF]">
                 {result.status === "OPEN" && (
                   <p>Sua denúncia foi recebida e está aguardando análise. A equipe responsável irá verificar em breve.</p>
                 )}

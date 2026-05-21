@@ -25,7 +25,7 @@ const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<
     const d = payload[0].payload;
     const color = getScoreColor(d.score);
     return (
-      <div className="bg-[#1A1030] border border-purple-500/20 rounded-lg px-4 py-3 shadow-xl">
+      <div className="bg-[#1e2438] border border-green-600/20 rounded-lg px-4 py-3 shadow-xl">
         <p className="text-xs text-[#9CA3AF] mb-1">{d.name}</p>
         <p className="text-lg font-bold" style={{ color }}>
           {d.score.toFixed(1)}

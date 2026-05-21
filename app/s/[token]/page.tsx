@@ -95,18 +95,18 @@ export default function TokenSurveyPage() {
 
   if (status === "loading") {
     return (
-      <div className="min-h-screen bg-[#0F0A1A] flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-400" />
+      <div className="min-h-screen bg-[#1a1a2e] flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-green-400" />
       </div>
     );
   }
 
   if (status === "used") {
     return (
-      <div className="min-h-screen bg-[#0F0A1A] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#1a1a2e] flex items-center justify-center p-4">
         <div className="text-center max-w-sm">
           <div className="text-5xl mb-4">✅</div>
-          <h2 className="text-xl font-bold text-[#E9D5FF] mb-2 font-[var(--font-sora)]">Pesquisa já respondida</h2>
+          <h2 className="text-xl font-bold text-[#dcfce7] mb-2 font-[var(--font-sora)]">Pesquisa já respondida</h2>
           <p className="text-[#9CA3AF] text-sm">Este link já foi utilizado. Cada link é válido para uma resposta apenas.</p>
         </div>
       </div>
@@ -115,10 +115,10 @@ export default function TokenSurveyPage() {
 
   if (status === "closed") {
     return (
-      <div className="min-h-screen bg-[#0F0A1A] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#1a1a2e] flex items-center justify-center p-4">
         <div className="text-center max-w-sm">
           <div className="text-5xl mb-4">🔒</div>
-          <h2 className="text-xl font-bold text-[#E9D5FF] mb-2 font-[var(--font-sora)]">Pesquisa encerrada</h2>
+          <h2 className="text-xl font-bold text-[#dcfce7] mb-2 font-[var(--font-sora)]">Pesquisa encerrada</h2>
           <p className="text-[#9CA3AF] text-sm">Esta pesquisa não está mais disponível para respostas.</p>
         </div>
       </div>
@@ -127,10 +127,10 @@ export default function TokenSurveyPage() {
 
   if (status === "invalid") {
     return (
-      <div className="min-h-screen bg-[#0F0A1A] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#1a1a2e] flex items-center justify-center p-4">
         <div className="text-center max-w-sm">
           <div className="text-5xl mb-4">❌</div>
-          <h2 className="text-xl font-bold text-[#E9D5FF] mb-2 font-[var(--font-sora)]">Link inválido</h2>
+          <h2 className="text-xl font-bold text-[#dcfce7] mb-2 font-[var(--font-sora)]">Link inválido</h2>
           <p className="text-[#9CA3AF] text-sm">Este link não existe ou expirou.</p>
         </div>
       </div>
@@ -142,13 +142,13 @@ export default function TokenSurveyPage() {
   const currentStepAnswered = currentStepQuestions.every(q => answers[q.id] !== undefined);
 
   const Header = () => (
-    <header className="border-b border-purple-500/20 bg-[#1A1030]">
+    <header className="border-b border-green-600/20 bg-[#1e2438]">
       <div className="mx-auto max-w-3xl flex items-center gap-3 px-4 py-4">
         <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600">
             <Brain className="h-4 w-4 text-white" />
           </div>
-          <span className="text-sm font-bold text-[#E9D5FF] font-[var(--font-sora)]">SafeMind NR-01</span>
+          <span className="text-sm font-bold text-[#dcfce7] font-[var(--font-sora)]">ComplyOn</span>
         </a>
         <div className="ml-auto flex items-center gap-1.5 text-xs text-emerald-400">
           <Shield className="h-3 w-3" />
@@ -161,22 +161,22 @@ export default function TokenSurveyPage() {
   // LGPD consent screen — shown once before the first question
   if (!consented) {
     return (
-      <div className="min-h-screen bg-[#0F0A1A]">
+      <div className="min-h-screen bg-[#1a1a2e]">
         <Header />
         <main className="mx-auto max-w-2xl px-4 py-10 space-y-6">
-          <div className="rounded-2xl border border-purple-500/20 bg-[#1A1030] p-8 space-y-6">
+          <div className="rounded-2xl border border-green-600/20 bg-[#1e2438] p-8 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/20">
-                <Shield className="h-5 w-5 text-purple-400" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-600/20">
+                <Shield className="h-5 w-5 text-green-400" />
               </div>
-              <h1 className="text-xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+              <h1 className="text-xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
                 Antes de começar
               </h1>
             </div>
 
             <p className="text-[#9CA3AF] text-sm leading-relaxed">
               Esta pesquisa coleta informações sobre seu bem-estar e saúde mental no trabalho. Por envolver dados de saúde, a{" "}
-              <strong className="text-[#E9D5FF]">Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018)</strong> exige que você
+              <strong className="text-[#dcfce7]">Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018)</strong> exige que você
               seja informado antes de participar.
             </p>
 
@@ -184,7 +184,7 @@ export default function TokenSurveyPage() {
               <div className="flex gap-3">
                 <span className="text-lg shrink-0">🔒</span>
                 <div>
-                  <p className="text-sm font-medium text-[#E9D5FF]">Anonimato total</p>
+                  <p className="text-sm font-medium text-[#dcfce7]">Anonimato total</p>
                   <p className="text-xs text-[#9CA3AF] mt-0.5">
                     Suas respostas são completamente desvinculadas da sua identidade. Nenhum dado que possa identificar você é
                     armazenado. Nem o administrador da empresa consegue saber o que você respondeu individualmente.
@@ -194,7 +194,7 @@ export default function TokenSurveyPage() {
               <div className="flex gap-3">
                 <span className="text-lg shrink-0">📋</span>
                 <div>
-                  <p className="text-sm font-medium text-[#E9D5FF]">O que coletamos</p>
+                  <p className="text-sm font-medium text-[#dcfce7]">O que coletamos</p>
                   <p className="text-xs text-[#9CA3AF] mt-0.5">
                     Apenas suas respostas às perguntas desta pesquisa (escala de concordância e textos opcionais). Nenhuma outra
                     informação pessoal é coletada.
@@ -204,7 +204,7 @@ export default function TokenSurveyPage() {
               <div className="flex gap-3">
                 <span className="text-lg shrink-0">⚖️</span>
                 <div>
-                  <p className="text-sm font-medium text-[#E9D5FF]">Base legal</p>
+                  <p className="text-sm font-medium text-[#dcfce7]">Base legal</p>
                   <p className="text-xs text-[#9CA3AF] mt-0.5">
                     O processamento ocorre com base na obrigação legal da NR-01 (Portaria MTE nº 765/2025) e no seu
                     consentimento explícito abaixo (LGPD Art. 11, II, a).
@@ -214,7 +214,7 @@ export default function TokenSurveyPage() {
               <div className="flex gap-3">
                 <span className="text-lg shrink-0">📅</span>
                 <div>
-                  <p className="text-sm font-medium text-[#E9D5FF]">Retenção de dados</p>
+                  <p className="text-sm font-medium text-[#dcfce7]">Retenção de dados</p>
                   <p className="text-xs text-[#9CA3AF] mt-0.5">
                     As respostas são mantidas pelo prazo legal necessário à conformidade trabalhista (até 5 anos) e depois
                     apagadas definitivamente.
@@ -224,7 +224,7 @@ export default function TokenSurveyPage() {
               <div className="flex gap-3">
                 <span className="text-lg shrink-0">✋</span>
                 <div>
-                  <p className="text-sm font-medium text-[#E9D5FF]">Participação voluntária</p>
+                  <p className="text-sm font-medium text-[#dcfce7]">Participação voluntária</p>
                   <p className="text-xs text-[#9CA3AF] mt-0.5">
                     Sua participação é voluntária. Você pode optar por não responder sem qualquer consequência.
                     Para exercer seus direitos previstos no Art. 18 da LGPD (acesso, correção, exclusão), entre em contato com
@@ -245,8 +245,8 @@ export default function TokenSurveyPage() {
 
             <p className="text-center text-xs text-[#6B7280]">
               Política de Privacidade:{" "}
-              <a href="/privacidade" className="underline hover:text-purple-400" target="_blank" rel="noreferrer">
-                safemind.com.br/privacidade
+              <a href="/privacidade" className="underline hover:text-green-400" target="_blank" rel="noreferrer">
+                complyon.com.br/privacidade
               </a>
             </p>
           </div>
@@ -256,12 +256,12 @@ export default function TokenSurveyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F0A1A]">
+    <div className="min-h-screen bg-[#1a1a2e]">
       <Header />
 
       <main className="mx-auto max-w-3xl px-4 py-8 space-y-6">
         <div>
-          <h1 className="text-xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">{survey?.title}</h1>
+          <h1 className="text-xl font-bold text-[#dcfce7] font-[var(--font-sora)]">{survey?.title}</h1>
           <p className="text-sm text-[#9CA3AF] mt-1">Suas respostas são 100% anônimas e não vinculadas à sua identidade.</p>
         </div>
 
@@ -298,9 +298,9 @@ export default function TokenSurveyPage() {
             <QuestionCard number={LIKERT_QUESTIONS.length + 3} text="Como você avalia seu nível de estresse atualmente? (1 = muito baixo, 10 = muito alto)">
               <div className="flex items-center gap-4">
                 <span className="text-sm text-[#9CA3AF]">1</span>
-                <input type="range" min={1} max={10} value={stressLevel} onChange={e => setStressLevel(Number(e.target.value))} className="flex-1 accent-purple-500" />
+                <input type="range" min={1} max={10} value={stressLevel} onChange={e => setStressLevel(Number(e.target.value))} className="flex-1 accent-green-600" />
                 <span className="text-sm text-[#9CA3AF]">10</span>
-                <span className="w-8 text-center text-lg font-bold text-purple-300 font-mono">{stressLevel}</span>
+                <span className="w-8 text-center text-lg font-bold text-green-300 font-mono">{stressLevel}</span>
               </div>
             </QuestionCard>
             <QuestionCard number={LIKERT_QUESTIONS.length + 4} text="Há algo mais que gostaria de compartilhar com a empresa?">

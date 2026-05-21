@@ -1,13 +1,11 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-// Enums
 enum Role {
   SUPER_ADMIN
   ADMIN
@@ -17,8 +15,9 @@ enum Role {
 
 enum Plan {
   FREE
-  ACTIVE
-  SUSPENDED
+  STARTER
+  GROWTH
+  ENTERPRISE
 }
 
 enum SurveyStatus {
@@ -57,7 +56,6 @@ enum ComplaintStatus {
   COMPLETED
 }
 
-// Models
 model Company {
   id               String    @id @default(cuid())
   name             String
@@ -67,16 +65,17 @@ model Company {
   logoUrl          String?
   stripeCustomerId String?
   stripeSubId      String?
-  stripeSubItemId  String?
   maxEmployees     Int       @default(10)
+  firstCode        String?   @unique
+  adminEmail       String?
+  activated        Boolean   @default(false)
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
-  users              User[]
-  surveys            Survey[]
-  complaints         Complaint[]
-  actionPlans        ActionPlan[]
-  complianceOverrides ComplianceOverride[]
+  users        User[]
+  surveys      Survey[]
+  complaints   Complaint[]
+  actionPlans  ActionPlan[]
 }
 
 model User {
@@ -89,15 +88,13 @@ model User {
   active        Boolean   @default(true)
   inviteToken   String?   @unique
   invitedAt     DateTime?
-  companyId     String
+  companyId     String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  company     Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  company     Company?     @relation(fields: [companyId], references: [id], onDelete: Cascade)
   sessions    Session[]
   accounts    Account[]
-
-  @@index([companyId])
 }
 
 model Account {
@@ -150,29 +147,13 @@ model Survey {
   company     Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
   responses   Response[]
   actionPlans ActionPlan[]
-  tokens      SurveyToken[]
-
-  @@index([companyId])
 }
 
-// Each token grants one anonymous access to a survey — emailSentTo is internal only, never exposed to company admins
-model SurveyToken {
-  id          String    @id @default(cuid())
-  surveyId    String
-  token       String    @unique
-  emailSentTo String?
-  usedAt      DateTime?
-  createdAt   DateTime  @default(now())
-
-  survey Survey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
-}
-
-// IMPORTANT: Response is COMPLETELY anonymous - no userId stored ever
 model Response {
   id        String   @id @default(cuid())
   surveyId  String
-  answers   Json     // { questionId: value }
-  scores    Json?    // { sphereId: score }
+  answers   Json
+  scores    Json?
   createdAt DateTime @default(now())
 
   survey Survey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
@@ -196,11 +177,8 @@ model ActionPlan {
 
   survey  Survey  @relation(fields: [surveyId], references: [id], onDelete: Cascade)
   company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-  @@index([companyId])
 }
 
-// IMPORTANT: Complaint is COMPLETELY anonymous - no user data stored
 model Complaint {
   id          String            @id @default(cuid())
   protocol    String            @unique
@@ -215,20 +193,4 @@ model Complaint {
   updatedAt   DateTime          @updatedAt
 
   company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-  @@index([companyId])
-}
-
-model ComplianceOverride {
-  id        String   @id @default(cuid())
-  companyId String
-  itemId    String
-  status    String
-  comment   String   @db.Text
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-  @@unique([companyId, itemId])
 }

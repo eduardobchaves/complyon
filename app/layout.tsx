@@ -14,7 +14,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "SafeMind NR-1 — Saúde Mental Corporativa",
+  title: "ComplyOn — Saúde Mental Corporativa",
   description: "Plataforma de gestão de saúde mental e conformidade NR-01 para empresas brasileiras.",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${inter.variable} ${sora.variable} h-full`}>
-      <body className="min-h-full bg-[#0F0A1A] text-[#E9D5FF] font-[var(--font-inter)] antialiased">
+      <body className="min-h-full bg-[#1a1a2e] text-[#dcfce7] font-[var(--font-inter)] antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

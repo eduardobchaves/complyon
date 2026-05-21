@@ -10,9 +10,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     redirect("/login");
   }
 
-  const userRole = (session.user as { role: string }).role;
-  if (!["ADMIN", "SUPER_ADMIN"].includes(userRole)) {
-    redirect("/login");
+  const role = (session.user as { role: string }).role;
+  if (role === "SUPER_ADMIN") {
+    redirect("/superadmin/companies");
   }
 
   const companyId = (session.user as { companyId: string }).companyId;

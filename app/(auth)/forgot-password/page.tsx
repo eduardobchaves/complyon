@@ -38,9 +38,9 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <Card className="border border-purple-500/20 bg-[#1A1030]">
+    <Card className="border border-green-600/20 bg-[#1e2438]">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">
+        <CardTitle className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">
           Recuperar senha
         </CardTitle>
         <CardDescription className="text-[#9CA3AF]">
@@ -51,7 +51,7 @@ export default function ForgotPasswordPage() {
       {sent ? (
         <CardContent className="pt-2 pb-6 text-center">
           <CheckCircle2 className="h-12 w-12 text-emerald-400 mx-auto mb-4" />
-          <p className="text-[#E9D5FF] font-medium mb-2">Email enviado!</p>
+          <p className="text-[#dcfce7] font-medium mb-2">Email enviado!</p>
           <p className="text-[#9CA3AF] text-sm">
             Se esse email estiver cadastrado, você receberá as instruções em breve.
           </p>
@@ -87,7 +87,7 @@ export default function ForgotPasswordPage() {
 
             <Link
               href="/login"
-              className="flex items-center gap-2 text-sm text-[#9CA3AF] hover:text-[#E9D5FF] transition-colors"
+              className="flex items-center gap-2 text-sm text-[#9CA3AF] hover:text-[#dcfce7] transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               Voltar ao login

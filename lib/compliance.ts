@@ -70,6 +70,6 @@ export const BASE_ITEMS: ComplianceBaseItem[] = [
     description: "Manter documentação atualizada do gerenciamento de riscos psicossociais.",
     legalRef: "NR-01 §1.5.6",
     status: "pending",
-    detail: "A plataforma SafeMind mantém registros digitais de todas as pesquisas, respostas e planos de ação.",
+    detail: "A plataforma ComplyOn mantém registros digitais de todas as pesquisas, respostas e planos de ação.",
   },
 ];

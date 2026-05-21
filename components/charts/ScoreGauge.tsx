@@ -23,7 +23,7 @@ export function ScoreGauge({ score, size = 120, showLabel = true }: ScoreGaugePr
           <circle
             cx="50" cy="50" r={r}
             fill="none"
-            stroke="#221540"
+            stroke="#252d45"
             strokeWidth="8"
           />
           <circle

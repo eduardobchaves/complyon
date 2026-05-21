@@ -8,7 +8,7 @@ export default function SurveyCompletePage() {
       <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/20 border border-emerald-500/30">
         <CheckCircle2 className="h-10 w-10 text-emerald-400" />
       </div>
-      <h1 className="text-3xl font-bold text-[#E9D5FF] mb-3 font-[var(--font-sora)]">
+      <h1 className="text-3xl font-bold text-[#dcfce7] mb-3 font-[var(--font-sora)]">
         Obrigado pela sua participação!
       </h1>
       <p className="text-[#9CA3AF] max-w-md mb-4">
@@ -20,7 +20,7 @@ export default function SurveyCompletePage() {
       </div>
       <div className="space-y-3">
         <p className="text-sm font-medium text-[#9CA3AF]">Dica de bem-estar</p>
-        <p className="text-sm text-[#E9D5FF] max-w-sm italic">
+        <p className="text-sm text-[#dcfce7] max-w-sm italic">
           "Pequenas pausas ao longo do dia ajudam a manter o foco e reduzir o estresse. Reserve 5 minutos para respirar fundo e se reconectar."
         </p>
       </div>

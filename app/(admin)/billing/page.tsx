@@ -65,7 +65,7 @@ export default function BillingPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-400" />
+        <Loader2 className="h-8 w-8 animate-spin text-green-400" />
       </div>
     );
   }
@@ -81,8 +81,8 @@ export default function BillingPage() {
   return (
     <div className="space-y-8 max-w-3xl">
       <div>
-        <h1 className="text-2xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">Cobrança</h1>
-        <p className="text-[#9CA3AF] text-sm mt-1">Gerencie sua assinatura SafeMind NR-01.</p>
+        <h1 className="text-2xl font-bold text-[#dcfce7] font-[var(--font-sora)]">Cobrança</h1>
+        <p className="text-[#9CA3AF] text-sm mt-1">Gerencie sua assinatura ComplyOn.</p>
       </div>
 
       {successMsg && (
@@ -102,19 +102,19 @@ export default function BillingPage() {
       <div className={`rounded-xl border p-6 space-y-4 ${
         isActive ? "border-emerald-500/30 bg-emerald-500/5" :
         isSuspended ? "border-red-500/30 bg-red-500/5" :
-        "border-purple-500/20 bg-[#1A1030]"
+        "border-green-600/20 bg-[#1e2438]"
       }`}>
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-3">
             <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-              isActive ? "bg-emerald-500/20" : isSuspended ? "bg-red-500/20" : "bg-purple-500/20"
+              isActive ? "bg-emerald-500/20" : isSuspended ? "bg-red-500/20" : "bg-green-600/20"
             }`}>
               <CreditCard className={`h-5 w-5 ${
-                isActive ? "text-emerald-400" : isSuspended ? "text-red-400" : "text-purple-400"
+                isActive ? "text-emerald-400" : isSuspended ? "text-red-400" : "text-green-400"
               }`} />
             </div>
             <div>
-              <p className="text-sm font-medium text-[#E9D5FF]">Status da assinatura</p>
+              <p className="text-sm font-medium text-[#dcfce7]">Status da assinatura</p>
               <p className={`text-xs font-semibold ${
                 isActive ? "text-emerald-400" : isSuspended ? "text-red-400" : "text-[#9CA3AF]"
               }`}>
@@ -142,33 +142,33 @@ export default function BillingPage() {
           </p>
         )}
         {trialDaysLeft !== null && trialDaysLeft > 0 && (
-          <p className="text-xs text-purple-300 bg-purple-500/10 rounded-lg px-3 py-2">
+          <p className="text-xs text-green-300 bg-green-600/10 rounded-lg px-3 py-2">
             🎉 Você está no período de teste gratuito. Seu período de teste encerra em <strong>{trialDaysLeft} dia{trialDaysLeft !== 1 ? "s" : ""}</strong>.
             Nenhuma cobrança será feita até lá.
           </p>
         )}
 
         <div className="grid grid-cols-2 gap-4 pt-2">
-          <div className="bg-[#0F0A1A]/60 rounded-lg p-4">
+          <div className="bg-[#1a1a2e]/60 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-1">
-              <Users className="h-4 w-4 text-purple-400" />
+              <Users className="h-4 w-4 text-green-400" />
               <span className="text-xs text-[#9CA3AF]">Colaboradores ativos</span>
             </div>
-            <p className="text-2xl font-bold text-[#E9D5FF]">{info?.employeeCount ?? 0}</p>
+            <p className="text-2xl font-bold text-[#dcfce7]">{info?.employeeCount ?? 0}</p>
           </div>
-          <div className="bg-[#0F0A1A]/60 rounded-lg p-4">
+          <div className="bg-[#1a1a2e]/60 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-1">
-              <Brain className="h-4 w-4 text-purple-400" />
+              <Brain className="h-4 w-4 text-green-400" />
               <span className="text-xs text-[#9CA3AF]">Estimativa mensal</span>
             </div>
-            <p className="text-2xl font-bold text-[#E9D5FF]">{estimatedBRL}</p>
+            <p className="text-2xl font-bold text-[#dcfce7]">{estimatedBRL}</p>
           </div>
         </div>
       </div>
 
       {/* Pricing table */}
-      <div className="rounded-xl border border-purple-500/20 bg-[#1A1030] p-6">
-        <h2 className="text-sm font-semibold text-[#E9D5FF] mb-4">Tabela de preços por colaborador / mês</h2>
+      <div className="rounded-xl border border-green-600/20 bg-[#1e2438] p-6">
+        <h2 className="text-sm font-semibold text-[#dcfce7] mb-4">Tabela de preços por colaborador / mês</h2>
         <div className="space-y-1">
           {BILLING_TIERS.map((tier, i) => {
             const prev = i === 0 ? 0 : BILLING_TIERS[i - 1].upTo as number;
@@ -183,11 +183,11 @@ export default function BillingPage() {
               <div
                 key={i}
                 className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm ${
-                  inRange ? "bg-purple-500/20 text-[#E9D5FF]" : "text-[#9CA3AF]"
+                  inRange ? "bg-green-600/20 text-[#dcfce7]" : "text-[#9CA3AF]"
                 }`}
               >
                 <span>{label} colaboradores</span>
-                <span className={`font-mono font-medium ${inRange ? "text-purple-300" : ""}`}>
+                <span className={`font-mono font-medium ${inRange ? "text-green-300" : ""}`}>
                   {formatBRL(tier.unitCents)} / pessoa
                   {i > 0 && <span className="text-xs ml-2 text-emerald-400">
                     -{Math.round((1 - tier.unitCents / 1200) * 100)}%
@@ -202,9 +202,9 @@ export default function BillingPage() {
           Para {info?.employeeCount ?? 0} colaboradores: <strong className="text-[#9CA3AF]">{estimatedBRL}/mês</strong>.
         </p>
         {isFree && (
-          <div className="mt-4 rounded-lg border border-purple-500/30 bg-purple-500/5 px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
+          <div className="mt-4 rounded-lg border border-green-600/30 bg-green-600/5 px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
             <div>
-              <p className="text-sm font-medium text-[#E9D5FF]">Teste grátis por 7 dias</p>
+              <p className="text-sm font-medium text-[#dcfce7]">Teste grátis por 7 dias</p>
               <p className="text-xs text-[#9CA3AF]">Cadastre seu cartão agora e explore a plataforma sem custo.</p>
             </div>
             <Button onClick={handleSubscribe} disabled={actionLoading} size="sm">

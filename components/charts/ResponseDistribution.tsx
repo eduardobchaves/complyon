@@ -28,9 +28,9 @@ export function ResponseDistribution({ answers, questionText }: ResponseDistribu
     if (active && payload && payload.length) {
       const d = payload[0].payload;
       return (
-        <div className="bg-[#1A1030] border border-purple-500/20 rounded-lg px-3 py-2 shadow-xl">
+        <div className="bg-[#1e2438] border border-green-600/20 rounded-lg px-3 py-2 shadow-xl">
           <p className="text-xs text-[#9CA3AF] mb-0.5">{d.fullLabel}</p>
-          <p className="text-sm font-bold text-purple-300">{d.count} respostas</p>
+          <p className="text-sm font-bold text-green-300">{d.count} respostas</p>
         </div>
       );
     }
@@ -60,7 +60,7 @@ export function ResponseDistribution({ answers, questionText }: ResponseDistribu
             tickLine={false}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(124,58,237,0.05)" }} />
-          <Bar dataKey="count" fill="#7C3AED" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="count" fill="#16a34a" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>

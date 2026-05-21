@@ -27,7 +27,7 @@ export default async function SettingsPage() {
   return (
     <div className="max-w-2xl space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-[#E9D5FF] font-[var(--font-sora)]">Configurações</h1>
+        <h1 className="text-3xl font-bold text-[#dcfce7] font-[var(--font-sora)]">Configurações</h1>
         <p className="mt-1 text-[#9CA3AF]">Informações da empresa e configurações da conta</p>
       </div>
 
@@ -39,11 +39,11 @@ export default async function SettingsPage() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-xs text-[#9CA3AF] mb-1">Nome da empresa</p>
-              <p className="text-sm font-medium text-[#E9D5FF]">{company.name}</p>
+              <p className="text-sm font-medium text-[#dcfce7]">{company.name}</p>
             </div>
             <div>
               <p className="text-xs text-[#9CA3AF] mb-1">CNPJ</p>
-              <p className="text-sm font-mono text-[#E9D5FF]">{company.cnpj}</p>
+              <p className="text-sm font-mono text-[#dcfce7]">{company.cnpj}</p>
             </div>
             <div>
               <p className="text-xs text-[#9CA3AF] mb-1">Plano atual</p>
@@ -51,7 +51,7 @@ export default async function SettingsPage() {
             </div>
             <div>
               <p className="text-xs text-[#9CA3AF] mb-1">Membro desde</p>
-              <p className="text-sm text-[#E9D5FF]">{new Date(company.createdAt).toLocaleDateString("pt-BR")}</p>
+              <p className="text-sm text-[#dcfce7]">{new Date(company.createdAt).toLocaleDateString("pt-BR")}</p>
             </div>
           </div>
         </CardContent>
@@ -60,20 +60,20 @@ export default async function SettingsPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
-            <Shield className="h-4 w-4 text-purple-400" />
+            <Shield className="h-4 w-4 text-green-400" />
             Canal de Denúncias
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-xs text-[#9CA3AF] mb-2">URL pública do canal de denúncias</p>
-          <div className="flex items-center gap-3 rounded-lg bg-[#221540] px-4 py-3">
-            <code className="flex-1 text-sm text-purple-300 font-mono break-all">
-              {process.env.NEXT_PUBLIC_APP_URL || "https://safemind.com.br"}/denuncias/{company.slug}
+          <div className="flex items-center gap-3 rounded-lg bg-[#252d45] px-4 py-3">
+            <code className="flex-1 text-sm text-green-300 font-mono break-all">
+              {process.env.NEXT_PUBLIC_APP_URL || "https://complyon.com.br"}/denuncias/{company.slug}
             </code>
             <Link
               href={`/denuncias/${company.slug}`}
               target="_blank"
-              className="text-purple-400 hover:text-purple-300"
+              className="text-green-400 hover:text-green-300"
             >
               <ExternalLink className="h-4 w-4" />
             </Link>
