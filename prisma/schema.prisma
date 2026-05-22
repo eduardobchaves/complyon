@@ -6,6 +6,7 @@ datasource db {
   provider = "postgresql"
 }
 
+// Enums
 enum Role {
   SUPER_ADMIN
   ADMIN
@@ -56,6 +57,7 @@ enum ComplaintStatus {
   COMPLETED
 }
 
+// Models
 model Company {
   id               String    @id @default(cuid())
   name             String
@@ -138,23 +140,37 @@ model Survey {
   title       String
   description String?
   status      SurveyStatus @default(DRAFT)
+  hrMessage   String?      @db.Text
   startDate   DateTime?
   endDate     DateTime?
   companyId   String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 
-  company     Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  responses   Response[]
-  actionPlans ActionPlan[]
+  company      Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  responses    Response[]
+  actionPlans  ActionPlan[]
+  surveyTokens SurveyToken[]
 }
 
+// IMPORTANT: Response is COMPLETELY anonymous - no userId stored ever
 model Response {
   id        String   @id @default(cuid())
   surveyId  String
-  answers   Json
-  scores    Json?
+  answers   Json     // { questionId: value }
+  scores    Json?    // { sphereId: score }
   createdAt DateTime @default(now())
+
+  survey Survey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+}
+
+model SurveyToken {
+  id        String    @id @default(cuid())
+  token     String    @unique
+  surveyId  String
+  used      Boolean   @default(false)
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
 
   survey Survey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
 }
@@ -179,6 +195,7 @@ model ActionPlan {
   company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 }
 
+// IMPORTANT: Complaint is COMPLETELY anonymous - no user data stored
 model Complaint {
   id          String            @id @default(cuid())
   protocol    String            @unique
