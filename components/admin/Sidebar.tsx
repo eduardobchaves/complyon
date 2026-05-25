@@ -13,7 +13,6 @@ import {
   LogOut,
   Brain,
   ChevronRight,
-  CreditCard,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -29,7 +28,6 @@ const navItems = [
   { href: "/employees", icon: Users, label: "Colaboradores" },
   { href: "/complaints", icon: AlertTriangle, label: "Canal de Denúncias" },
   { href: "/compliance", icon: Shield, label: "Conformidade NR-01" },
-  { href: "/billing", icon: CreditCard, label: "Cobrança" },
   { href: "/settings", icon: Settings, label: "Configurações" },
 ];
 

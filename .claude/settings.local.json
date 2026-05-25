@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(grep -r \"ComplyOn\" . --include=\"*.ts\" --include=\"*.tsx\" --include=\"*.json\" --include=\"*.md\" ! -path \"*/node_modules/*\" ! -path \"*/.next/*\" -n)",
-      "Bash(grep *)"
+      "Bash(grep *)",
+      "Bash(Remove-Item apply-changes-2.js, fix-brand-rename.js, fix-compliance-delete-stale.js, fix-compliance-pdf.js, fix-compliance-sync.js, fix-nextconfig.js, fix-pdf-export-v2.js, fix-pdf-export.js, fix-superadmin-buttons.js, fix-survey-hr-message.js -Force)",
+      "Bash(git add *)",
+      "Bash(npx prisma *)",
+      "Bash(npm run *)",
+      "Bash(git restore *)",
+      "Bash(read f *)",
+      "Bash([ ! -f \"app/\\(superadmin\\)/companies/$f\" ])",
+      "Bash([ ! -f \"app/superadmin/companies/$f\" ])"
     ]
   }
 }

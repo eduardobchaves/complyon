@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ComplianceChecklist } from "@/components/admin/ComplianceChecklist";
+import { ComplianceListClient } from "@/components/admin/ComplianceListClient";
 import { Button } from "@/components/ui/button";
 import { Shield, FileDown } from "lucide-react";
 import { getComplianceData } from "@/lib/compliance-data";
@@ -69,11 +69,7 @@ export default async function CompliancePage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
-            {items.map((item) => (
-              <ComplianceChecklist key={item.id} item={item} />
-            ))}
-          </div>
+          <ComplianceListClient items={items} />
         </CardContent>
       </Card>
 
