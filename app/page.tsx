@@ -81,47 +81,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="mx-auto max-w-5xl px-4 py-16">
-        <h2 className="text-2xl font-bold text-[#dcfce7] text-center mb-10 font-[var(--font-sora)]">Planos simples e transparentes</h2>
-        <div className="grid sm:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-green-600/20 bg-[#1e2438] p-6">
-            <p className="text-sm font-medium text-green-400 mb-1">FREE</p>
-            <p className="text-3xl font-bold text-[#dcfce7] mb-1 font-mono">R$0</p>
-            <p className="text-xs text-[#9CA3AF] mb-6">Até 30 colaboradores</p>
-            <ul className="space-y-2 text-sm text-[#9CA3AF]">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> 1 pesquisa ativa</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> Canal de denúncias</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> Dashboard básico</li>
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-green-600/40 bg-[#252d45] p-6 relative">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs bg-green-600 text-white px-3 py-1 rounded-full">Popular</div>
-            <p className="text-sm font-medium text-green-400 mb-1">STARTER</p>
-            <p className="text-3xl font-bold text-[#dcfce7] mb-1 font-mono">R$490<span className="text-base font-normal text-[#9CA3AF]">/mês</span></p>
-            <p className="text-xs text-[#9CA3AF] mb-6">Até 200 colaboradores</p>
-            <ul className="space-y-2 text-sm text-[#9CA3AF]">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> Pesquisas ilimitadas</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> Relatório de conformidade</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> Planos de ação</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> Exportar PDF</li>
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-green-600/20 bg-[#1e2438] p-6">
-            <p className="text-sm font-medium text-green-400 mb-1">GROWTH</p>
-            <p className="text-3xl font-bold text-[#dcfce7] mb-1 font-mono">R$990<span className="text-base font-normal text-[#9CA3AF]">/mês</span></p>
-            <p className="text-xs text-[#9CA3AF] mb-6">Colaboradores ilimitados</p>
-            <ul className="space-y-2 text-sm text-[#9CA3AF]">
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> Tudo do Starter</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> API access</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> Suporte dedicado</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="h-3 w-3 text-emerald-400" /> SSO / SAML</li>
-            </ul>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="border-t border-green-600/20 bg-[#1e2438] mt-16">

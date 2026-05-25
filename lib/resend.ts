@@ -60,10 +60,12 @@ export async function sendSurveyOpenEmail({
   to,
   companyName,
   surveyLink,
+  hrMessage,
 }: {
   to: string;
   companyName: string;
   surveyLink: string;
+  hrMessage?: string;
 }) {
   return sendEmail({
     to,
@@ -71,6 +73,7 @@ export async function sendSurveyOpenEmail({
     html: `
       <h2>Pesquisa de Clima Organizacional</h2>
       <p>A empresa <strong>${companyName}</strong> abriu uma nova pesquisa de clima.</p>
+      ${hrMessage ? `<p style="background:#f0fdf4;border-left:4px solid #16a34a;padding:12px 16px;border-radius:4px;color:#374151;">${hrMessage}</p>` : ""}
       <p>Sua participação é anônima e leva apenas 5 minutos.</p>
       <a href="${surveyLink}" style="background:#16a34a;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;display:inline-block;margin:16px 0;">Responder Pesquisa</a>
       <p style="color:#6B7280;font-size:12px;">Suas respostas são 100% anônimas. Nenhum dado identificador é armazenado.</p>
@@ -184,6 +187,30 @@ export async function sendComplaintReceivedEmail({
       <p>Acesse o painel para visualizar e tomar as providências necessárias.</p>
       <a href="${complaintsLink}" style="background:#16a34a;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;display:inline-block;margin:16px 0;">Ver Denúncia</a>
       <p style="color:#6B7280;font-size:12px;">Os detalhes da denúncia estão disponíveis apenas no painel seguro.</p>
+    `,
+  });
+}
+
+export async function sendResetPasswordEmail({
+  to,
+  name,
+  companyName,
+  resetLink,
+}: {
+  to: string;
+  name: string;
+  companyName: string;
+  resetLink: string;
+}) {
+  return sendEmail({
+    to,
+    subject: `Resetar sua senha no ComplyOn`,
+    html: `
+      <h2>Olá, ${name}!</h2>
+      <p>Você solicitou para resetar sua senha no ComplyOn da <strong>${companyName}</strong>.</p>
+      <p>Clique no link abaixo para criar uma nova senha. Este link expira em 1 hora.</p>
+      <a href="${resetLink}" style="background:#16a34a;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;display:inline-block;margin:16px 0;">Resetar Senha</a>
+      <p style="color:#6B7280;font-size:12px;">Se você não solicitou isso, ignore este email. Por razões de segurança, não compartilhe este link com outras pessoas.</p>
     `,
   });
 }

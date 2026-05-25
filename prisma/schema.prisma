@@ -74,16 +74,17 @@ model Company {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
-  users        User[]
-  surveys      Survey[]
-  complaints   Complaint[]
-  actionPlans  ActionPlan[]
+  users                 User[]
+  surveys              Survey[]
+  complaints           Complaint[]
+  actionPlans          ActionPlan[]
+  complianceOverrides  ComplianceOverride[]
 }
 
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String    @unique
+  email         String
   emailVerified DateTime?
   password      String?
   role          Role      @default(EMPLOYEE)
@@ -97,6 +98,8 @@ model User {
   company     Company?     @relation(fields: [companyId], references: [id], onDelete: Cascade)
   sessions    Session[]
   accounts    Account[]
+
+  @@unique([email, companyId])
 }
 
 model Account {
@@ -197,17 +200,32 @@ model ActionPlan {
 
 // IMPORTANT: Complaint is COMPLETELY anonymous - no user data stored
 model Complaint {
-  id          String            @id @default(cuid())
-  protocol    String            @unique
-  companyId   String
-  category    ComplaintCategory
-  description String            @db.Text
-  status      ComplaintStatus   @default(OPEN)
-  notes       String?           @db.Text
-  reviewedAt  DateTime?
-  completedAt DateTime?
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id                         String            @id @default(cuid())
+  protocol                   String            @unique
+  companyId                  String
+  category                   ComplaintCategory
+  description                String            @db.Text
+  status                     ComplaintStatus   @default(OPEN)
+  notes                      String?           @db.Text
+  notesVisibleToComplainant  String?           @db.Text
+  reviewedAt                 DateTime?
+  completedAt                DateTime?
+  createdAt                  DateTime          @default(now())
+  updatedAt                  DateTime          @updatedAt
 
   company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+model ComplianceOverride {
+  id        String   @id @default(cuid())
+  companyId String
+  itemId    String
+  status    String   // ok, pending, attention
+  comment   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, itemId])
 }

@@ -46,20 +46,25 @@ export default function AtivarPage() {
 
   const onSubmit = async (data: FormData) => {
     setError(null);
-    const res = await fetch("/api/auth/activate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: data.email, firstCode: data.firstCode, password: data.password }),
-    });
+    try {
+      const res = await fetch("/api/auth/activate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.email, firstCode: data.firstCode, password: data.password }),
+      });
 
-    const result = await res.json();
-    if (!res.ok) {
-      setError(result.error || "Erro ao ativar conta.");
-      return;
+      const result = await res.json();
+      if (!res.ok) {
+        setError(result.error || "Erro ao ativar conta.");
+        return;
+      }
+
+      setSuccess(true);
+      setTimeout(() => router.push("/login"), 2500);
+    } catch (err) {
+      setError("Erro ao conectar com o servidor. Tente novamente.");
+      console.error("Erro ao ativar:", err);
     }
-
-    setSuccess(true);
-    setTimeout(() => router.push("/login"), 2500);
   };
 
   if (success) {

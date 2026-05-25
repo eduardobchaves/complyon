@@ -23,8 +23,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Email não autorizado para este código" }, { status: 403 });
   }
 
-  const existingUser = await prisma.user.findUnique({ where: { email } });
-  if (existingUser) return NextResponse.json({ error: "Email já cadastrado" }, { status: 409 });
+  const existingUser = await prisma.user.findFirst({ where: { email, companyId: company.id } });
+  if (existingUser) return NextResponse.json({ error: "Email já cadastrado nesta empresa" }, { status: 409 });
 
   const hashedPassword = await bcrypt.hash(password, 12);
 
