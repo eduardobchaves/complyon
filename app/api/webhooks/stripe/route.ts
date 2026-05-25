@@ -36,9 +36,8 @@ export async function POST(request: NextRequest) {
         await prisma.company.update({
           where: { id: companyId },
           data: {
-            plan: "ACTIVE",
+            plan: "STARTER",
             stripeSubId: subId,
-            stripeSubItemId: subItemId ?? null,
             maxEmployees: -1,
           },
         });
@@ -59,8 +58,7 @@ export async function POST(request: NextRequest) {
         await prisma.company.update({
           where: { id: company.id },
           data: {
-            ...(active && { plan: "ACTIVE", maxEmployees: -1 }),
-            ...(subItemId && { stripeSubItemId: subItemId }),
+            ...(active && { plan: "STARTER", maxEmployees: -1 }),
           },
         });
         break;
@@ -73,7 +71,7 @@ export async function POST(request: NextRequest) {
           where: { stripeCustomerId: invoice.customer as string },
         });
         if (company) {
-          await prisma.company.update({ where: { id: company.id }, data: { plan: "SUSPENDED" } });
+          await prisma.company.update({ where: { id: company.id }, data: { plan: "FREE" } });
         }
         break;
       }
@@ -84,10 +82,10 @@ export async function POST(request: NextRequest) {
         const company = await prisma.company.findFirst({
           where: { stripeCustomerId: invoice.customer as string },
         });
-        if (company?.plan === "SUSPENDED") {
+        if (company?.plan === "FREE") {
           await prisma.company.update({
             where: { id: company.id },
-            data: { plan: "ACTIVE", maxEmployees: -1 },
+            data: { plan: "STARTER", maxEmployees: -1 },
           });
         }
         break;
@@ -102,7 +100,7 @@ export async function POST(request: NextRequest) {
         if (company) {
           await prisma.company.update({
             where: { id: company.id },
-            data: { plan: "FREE", maxEmployees: 10, stripeSubId: null, stripeSubItemId: null },
+            data: { plan: "FREE", maxEmployees: 10, stripeSubId: null },
           });
         }
         break;

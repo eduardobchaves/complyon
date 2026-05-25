@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     include: { company: true },
   });
 
-  if (!employee) return NextResponse.json({ error: "Employee not found" }, { status: 404 });
+  if (!employee || !employee.company) return NextResponse.json({ error: "Employee not found" }, { status: 404 });
 
   const token = crypto.randomBytes(32).toString("hex");
   await prisma.user.update({

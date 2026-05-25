@@ -33,15 +33,23 @@ export async function getActiveEmployeeCount(companyId: string): Promise<number>
 export async function syncCompanyUsage(companyId: string): Promise<void> {
   const company = await prisma.company.findUnique({
     where: { id: companyId },
-    select: { stripeSubItemId: true },
+    select: { stripeSubId: true },
   });
-  if (!company?.stripeSubItemId) return;
+  if (!company?.stripeSubId) return;
 
-  const count = await getActiveEmployeeCount(companyId);
-  await stripe.subscriptionItems.update(company.stripeSubItemId, {
-    quantity: count,
-    proration_behavior: "none",
-  }).catch(err => console.error("[billing] usage sync failed:", err));
+  try {
+    const subscription = await stripe.subscriptions.retrieve(company.stripeSubId);
+    const subItemId = subscription.items.data[0]?.id;
+    if (!subItemId) return;
+
+    const count = await getActiveEmployeeCount(companyId);
+    await stripe.subscriptionItems.update(subItemId, {
+      quantity: count,
+      proration_behavior: "none",
+    });
+  } catch (err) {
+    console.error("[billing] usage sync failed:", err);
+  }
 }
 
 /** Create (or retrieve) the Stripe tiered graduated price in BRL. */

@@ -418,24 +418,24 @@ export async function GET(request: NextRequest) {
         const overallScore = calculateOverallScore(sphereScores);
 
         pdfBuffer = await renderToBuffer(
-          React.createElement(ResultsPDF, {
-            companyName: company.name,
-            surveyTitle: survey.title,
-            totalResponses: survey.responses.length,
-            totalEmployees,
-            overallScore,
-            sphereScores,
-            generatedAt,
-          })
+          <ResultsPDF
+            companyName={company.name}
+            surveyTitle={survey.title}
+            totalResponses={survey.responses.length}
+            totalEmployees={totalEmployees}
+            overallScore={overallScore}
+            sphereScores={sphereScores}
+            generatedAt={generatedAt}
+          />
         );
       } else {
         pdfBuffer = await renderToBuffer(
-          React.createElement(ActionPlanPDF, {
-            companyName: company.name,
-            surveyTitle: survey.title,
-            actionPlans: survey.actionPlans,
-            generatedAt,
-          })
+          <ActionPlanPDF
+            companyName={company.name}
+            surveyTitle={survey.title}
+            actionPlans={survey.actionPlans}
+            generatedAt={generatedAt}
+          />
         );
       }
 
@@ -445,7 +445,7 @@ export async function GET(request: NextRequest) {
           ? `relatorio-${slug}.pdf`
           : `plano-acao-${slug}.pdf`;
 
-      return new NextResponse(pdfBuffer, {
+      return new NextResponse(pdfBuffer as unknown as BodyInit, {
         headers: {
           "Content-Type": "application/pdf",
           "Content-Disposition": `attachment; filename="${fileName}"`,

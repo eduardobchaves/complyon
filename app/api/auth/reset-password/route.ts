@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: parsed.error.errors[0]?.message || "Validação falhou" },
+        { error: parsed.error.issues[0]?.message || "Validação falhou" },
         { status: 400 }
       );
     }
