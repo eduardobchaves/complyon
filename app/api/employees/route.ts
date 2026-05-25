@@ -69,9 +69,9 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const existing = await prisma.user.findUnique({ where: { email } });
+  const existing = await prisma.user.findFirst({ where: { email, companyId } });
   if (existing) {
-    return NextResponse.json({ error: "Email já cadastrado" }, { status: 409 });
+    return NextResponse.json({ error: "Email já cadastrado nesta empresa" }, { status: 409 });
   }
 
   const tempPassword = crypto.randomBytes(16).toString("hex");

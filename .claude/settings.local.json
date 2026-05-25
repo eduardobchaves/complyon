@@ -10,7 +10,8 @@
       "Bash(git restore *)",
       "Bash(read f *)",
       "Bash([ ! -f \"app/\\(superadmin\\)/companies/$f\" ])",
-      "Bash([ ! -f \"app/superadmin/companies/$f\" ])"
+      "Bash([ ! -f \"app/superadmin/companies/$f\" ])",
+      "Bash(rm -f check-*.js test-*.js diagnose-*.js list-*.js && echo \"✅ Arquivos de teste removidos\")"
     ]
   }
 }
