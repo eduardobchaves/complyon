@@ -73,13 +73,13 @@ export default async function DashboardPage() {
 
   // Historical trend (last 5 surveys with responses)
   const surveysWithResponses = surveys
-    .filter((s) => s.responses.length > 0 && (s.status === "CLOSED" || s.status === "ARCHIVED"))
+    .filter((s: typeof surveys[number]) => s.responses.length > 0 && (s.status === "CLOSED" || s.status === "ARCHIVED"))
     .slice(0, 5)
     .reverse();
 
-  const trendData = surveysWithResponses.map((survey) => {
+  const trendData = surveysWithResponses.map((survey: typeof surveysWithResponses[number]) => {
     const responsesScores = survey.responses
-      .map((r) => r.scores as Record<string, number> | null)
+      .map((r: typeof survey.responses[number]) => r.scores as Record<string, number> | null)
       .filter((s): s is Record<string, number> => s !== null);
 
     if (responsesScores.length === 0) return null;
