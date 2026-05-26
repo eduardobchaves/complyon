@@ -7,9 +7,23 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const hash = await bcrypt.hash("ComplyOn@2024", 12);
+  const seedPassword = process.env.SEED_ADMIN_PASSWORD;
+  if (!seedPassword) {
+    throw new Error("SEED_ADMIN_PASSWORD environment variable is required");
+  }
+  if (
+    seedPassword.length < 8 ||
+    !/[A-Z]/.test(seedPassword) ||
+    !/[a-z]/.test(seedPassword) ||
+    !/\d/.test(seedPassword)
+  ) {
+    throw new Error(
+      "SEED_ADMIN_PASSWORD must be at least 8 characters and contain uppercase, lowercase, and a digit"
+    );
+  }
 
-  // Para SUPER_ADMIN, usar findFirst pois companyId é null
+  const hash = await bcrypt.hash(seedPassword, 12);
+
   let superadmin = await prisma.user.findFirst({
     where: {
       email: "superadmin@complyon.com.br",
@@ -18,17 +32,12 @@ async function main() {
   });
 
   if (superadmin) {
-    // Se já existe, apenas garante que está ativo
     superadmin = await prisma.user.update({
       where: { id: superadmin.id },
-      data: {
-        active: true,
-        password: hash,
-      },
+      data: { active: true, password: hash },
     });
     console.log("Superadmin atualizado:", superadmin.email);
   } else {
-    // Se não existe, cria novo
     superadmin = await prisma.user.create({
       data: {
         email: "superadmin@complyon.com.br",
@@ -42,8 +51,7 @@ async function main() {
     console.log("Superadmin criado:", superadmin.email);
   }
 
-  console.log("Senha: ComplyOn@2024");
-  console.log("IMPORTANTE: Troque a senha apos o primeiro login.");
+  console.log("Superadmin pronto. Troque a senha após o primeiro login.");
 }
 
 main()

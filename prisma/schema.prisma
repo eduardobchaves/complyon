@@ -16,9 +16,7 @@ enum Role {
 
 enum Plan {
   FREE
-  STARTER
-  GROWTH
-  ENTERPRISE
+  ACTIVE
 }
 
 enum SurveyStatus {
@@ -89,9 +87,11 @@ model User {
   password      String?
   role          Role      @default(EMPLOYEE)
   active        Boolean   @default(true)
-  inviteToken   String?   @unique
-  invitedAt     DateTime?
-  companyId     String?
+  inviteToken         String?   @unique
+  invitedAt           DateTime?
+  resetToken          String?   @unique
+  resetTokenExpiresAt DateTime?
+  companyId           String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 

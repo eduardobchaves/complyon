@@ -79,6 +79,20 @@ export function proxy(req: NextRequest) {
     }
   }
 
+  // Forgot password: 5 req/15min per IP (prevents email spam)
+  if (pathname === "/api/auth/forgot-password" && req.method === "POST") {
+    if (!rateLimit(`fp:${ip}`, 5, 900_000)) {
+      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    }
+  }
+
+  // Reset password: 10 req/min per IP
+  if (pathname === "/api/auth/reset-password" && req.method === "POST") {
+    if (!rateLimit(`rp:${ip}`, 10, 60_000)) {
+      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -90,6 +104,8 @@ export const config = {
     "/api/complaints/status",
     "/api/auth/callback/credentials",
     "/api/auth/signin",
+    "/api/auth/forgot-password",
+    "/api/auth/reset-password",
   ],
 };
 

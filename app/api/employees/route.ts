@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { syncCompanyUsage } from "@/lib/billing";
 
 const createEmployeeSchema = z.object({
   name: z.string().min(2),
@@ -96,6 +95,5 @@ export async function POST(request: NextRequest) {
     },
   });
 
-  await syncCompanyUsage(companyId).catch(() => {});
   return NextResponse.json(employee, { status: 201 });
 }
