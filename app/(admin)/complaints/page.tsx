@@ -77,7 +77,7 @@ export default async function ComplaintsPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {complaints.map((complaint) => (
+                {complaints.map((complaint: typeof complaints[number]) => (
                   <ComplaintRow
                     key={complaint.id}
                     complaint={{
