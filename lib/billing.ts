@@ -1,5 +1,5 @@
 import "server-only";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
 // Tier data kept private here — only used for the Stripe price creation mapping below.
@@ -38,12 +38,12 @@ export async function syncCompanyUsage(companyId: string): Promise<void> {
   if (!company?.stripeSubId) return;
 
   try {
-    const subscription = await stripe.subscriptions.retrieve(company.stripeSubId);
+    const subscription = await getStripe().subscriptions.retrieve(company.stripeSubId);
     const subItemId = subscription.items.data[0]?.id;
     if (!subItemId) return;
 
     const count = await getActiveEmployeeCount(companyId);
-    await stripe.subscriptionItems.update(subItemId, {
+    await getStripe().subscriptionItems.update(subItemId, {
       quantity: count,
       proration_behavior: "none",
     });
@@ -56,7 +56,7 @@ export async function syncCompanyUsage(companyId: string): Promise<void> {
 export async function getOrCreateTieredPriceId(): Promise<string> {
   if (process.env.STRIPE_METERED_PRICE_ID) return process.env.STRIPE_METERED_PRICE_ID;
 
-  const price = await stripe.prices.create({
+  const price = await getStripe().prices.create({
     currency: "brl",
     billing_scheme: "tiered",
     tiers_mode: "graduated",
@@ -89,7 +89,7 @@ export async function createCheckoutSession(
 
   let customerId = company?.stripeCustomerId ?? undefined;
   if (!customerId) {
-    const customer = await stripe.customers.create({
+    const customer = await getStripe().customers.create({
       email: companyEmail,
       name: company?.name,
       metadata: { companyId },
@@ -98,7 +98,7 @@ export async function createCheckoutSession(
     await prisma.company.update({ where: { id: companyId }, data: { stripeCustomerId: customerId } });
   }
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     customer: customerId,
     mode: "subscription",
     line_items: [{ price: priceId, quantity: Math.max(1, employeeCount) }],
@@ -112,7 +112,7 @@ export async function createCheckoutSession(
 
 /** Create Stripe Billing Portal session so the admin can manage their subscription. */
 export async function createPortalSession(customerId: string, returnUrl: string): Promise<string> {
-  const session = await stripe.billingPortal.sessions.create({
+  const session = await getStripe().billingPortal.sessions.create({
     customer: customerId,
     return_url: returnUrl,
   });

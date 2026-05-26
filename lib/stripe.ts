@@ -1,6 +1,17 @@
 import Stripe from "stripe";
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-04-22.dahlia",
-});
+let stripe: Stripe | null = null;
+
+export function getStripe() {
+  if (!stripe) {
+    const apiKey = process.env.STRIPE_SECRET_KEY;
+    if (!apiKey) {
+      throw new Error("STRIPE_SECRET_KEY environment variable is not set");
+    }
+    stripe = new Stripe(apiKey, {
+      apiVersion: "2026-04-22.dahlia",
+    });
+  }
+  return stripe;
+}
 
