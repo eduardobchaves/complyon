@@ -100,7 +100,7 @@ export default async function DashboardPage() {
       score: overall,
       label: survey.title.slice(0, 15) + (survey.title.length > 15 ? "..." : ""),
     };
-  }).filter((d): d is NonNullable<typeof d> => d !== null);
+  }).filter((d: any): d is NonNullable<typeof d> => d !== null);
 
   const hasSurveyData = sphereScores.length > 0;
 
