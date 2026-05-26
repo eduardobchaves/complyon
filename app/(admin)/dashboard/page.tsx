@@ -38,8 +38,8 @@ export default async function DashboardPage() {
   ]);
 
   // Get latest closed survey for stats
-  const latestClosed = surveys.find((s) => s.status === "CLOSED" || s.status === "ARCHIVED");
-  const activeSurvey = surveys.find((s) => s.status === "ACTIVE");
+  const latestClosed = surveys.find((s: typeof surveys[number]) => s.status === "CLOSED" || s.status === "ARCHIVED");
+  const activeSurvey = surveys.find((s: typeof surveys[number]) => s.status === "ACTIVE");
 
   let sphereScores: ReturnType<typeof calculateAllSphereScores> = [];
   let overallScore = 0;
