@@ -4,6 +4,11 @@ import { prisma } from "@/lib/prisma";
 import Stripe from "stripe";
 
 export async function POST(request: NextRequest) {
+  const stripeClient = getStripe();
+  if (!stripeClient) {
+    return NextResponse.json({ error: "Stripe not configured" }, { status: 400 });
+  }
+
   const body = await request.text();
   const signature = request.headers.get("stripe-signature");
 
@@ -13,7 +18,7 @@ export async function POST(request: NextRequest) {
 
   let event: Stripe.Event;
   try {
-    event = getStripe().webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET!);
+    event = stripeClient.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET!);
   } catch (err) {
     console.error("Webhook signature verification failed:", err);
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
@@ -27,7 +32,7 @@ export async function POST(request: NextRequest) {
         if (cs.mode !== "subscription") break;
 
         const subId = cs.subscription as string;
-        const sub = await getStripe().subscriptions.retrieve(subId, { expand: ["items.data"] });
+        const sub = await stripeClient.subscriptions.retrieve(subId, { expand: ["items.data"] });
         const companyId = sub.metadata?.companyId;
         if (!companyId) break;
 

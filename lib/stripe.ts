@@ -1,16 +1,23 @@
 import Stripe from "stripe";
 
 let stripe: Stripe | null = null;
+let initialized = false;
 
-export function getStripe() {
-  if (!stripe) {
+export function getStripe(): Stripe | null {
+  if (!initialized) {
     const apiKey = process.env.STRIPE_SECRET_KEY;
-    if (!apiKey) {
-      throw new Error("STRIPE_SECRET_KEY environment variable is not set");
+    // Only initialize if we have a real key (not placeholder)
+    if (apiKey && !apiKey.includes("placeholder")) {
+      try {
+        stripe = new Stripe(apiKey, {
+          apiVersion: "2026-04-22.dahlia",
+        });
+      } catch (error) {
+        console.warn("Failed to initialize Stripe:", error);
+        stripe = null;
+      }
     }
-    stripe = new Stripe(apiKey, {
-      apiVersion: "2026-04-22.dahlia",
-    });
+    initialized = true;
   }
   return stripe;
 }
