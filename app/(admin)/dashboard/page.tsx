@@ -80,7 +80,7 @@ export default async function DashboardPage() {
   const trendData = surveysWithResponses.map((survey: typeof surveysWithResponses[number]) => {
     const responsesScores = survey.responses
       .map((r: typeof survey.responses[number]) => r.scores as Record<string, number> | null)
-      .filter((s): s is Record<string, number> => s !== null);
+      .filter((s: Record<string, number> | null): s is Record<string, number> => s !== null);
 
     if (responsesScores.length === 0) return null;
 
