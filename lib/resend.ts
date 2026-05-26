@@ -1,7 +1,18 @@
 import { Resend } from "resend";
 import nodemailer from "nodemailer";
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
+let resend: Resend | null = null;
+
+function getResend() {
+  if (!resend) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      throw new Error("RESEND_API_KEY environment variable is not set");
+    }
+    resend = new Resend(apiKey);
+  }
+  return resend;
+}
 
 const FROM = process.env.EMAIL_FROM || "noreply@complyon.com.br";
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
@@ -27,7 +38,7 @@ async function sendEmail({ to, subject, html }: { to: string; subject: string; h
     await transport.sendMail({ from, to, subject, html });
     return;
   }
-  const result = await resend.emails.send({ from: FROM, to, subject, html });
+  const result = await getResend().emails.send({ from: FROM, to, subject, html });
   if (result.error) throw new Error(result.error.message);
 }
 

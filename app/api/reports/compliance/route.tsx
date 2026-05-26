@@ -232,18 +232,18 @@ export async function GET() {
     const generatedAt = new Date().toLocaleDateString("pt-BR");
 
     const pdfBuffer = await renderToBuffer(
-      React.createElement(CompliancePDF, {
-        companyName,
-        compliancePct,
-        okCount,
-        attentionCount,
-        total: items.length,
-        items,
-        generatedAt,
-      })
+      <CompliancePDF
+        companyName={companyName}
+        compliancePct={compliancePct}
+        okCount={okCount}
+        attentionCount={attentionCount}
+        total={items.length}
+        items={items}
+        generatedAt={generatedAt}
+      />
     );
 
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(pdfBuffer as unknown as BodyInit, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="conformidade-nr01.pdf"`,

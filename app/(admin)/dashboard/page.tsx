@@ -38,8 +38,8 @@ export default async function DashboardPage() {
   ]);
 
   // Get latest closed survey for stats
-  const latestClosed = surveys.find((s) => s.status === "CLOSED" || s.status === "ARCHIVED");
-  const activeSurvey = surveys.find((s) => s.status === "ACTIVE");
+  const latestClosed = surveys.find((s: typeof surveys[number]) => s.status === "CLOSED" || s.status === "ARCHIVED");
+  const activeSurvey = surveys.find((s: typeof surveys[number]) => s.status === "ACTIVE");
 
   let sphereScores: ReturnType<typeof calculateAllSphereScores> = [];
   let overallScore = 0;
@@ -48,8 +48,8 @@ export default async function DashboardPage() {
 
   if (latestClosed && latestClosed.responses.length > 0) {
     const responsesScores = latestClosed.responses
-      .map((r) => r.scores as Record<string, number> | null)
-      .filter((s): s is Record<string, number> => s !== null);
+      .map((r: typeof latestClosed.responses[number]) => r.scores as Record<string, number> | null)
+      .filter((s: Record<string, number> | null): s is Record<string, number> => s !== null);
 
     const aggregatedScores = aggregateResponseScores(responsesScores);
     
@@ -73,14 +73,14 @@ export default async function DashboardPage() {
 
   // Historical trend (last 5 surveys with responses)
   const surveysWithResponses = surveys
-    .filter((s) => s.responses.length > 0 && (s.status === "CLOSED" || s.status === "ARCHIVED"))
+    .filter((s: typeof surveys[number]) => s.responses.length > 0 && (s.status === "CLOSED" || s.status === "ARCHIVED"))
     .slice(0, 5)
     .reverse();
 
-  const trendData = surveysWithResponses.map((survey) => {
+  const trendData = surveysWithResponses.map((survey: typeof surveysWithResponses[number]) => {
     const responsesScores = survey.responses
-      .map((r) => r.scores as Record<string, number> | null)
-      .filter((s): s is Record<string, number> => s !== null);
+      .map((r: typeof survey.responses[number]) => r.scores as Record<string, number> | null)
+      .filter((s: Record<string, number> | null): s is Record<string, number> => s !== null);
 
     if (responsesScores.length === 0) return null;
 
@@ -100,7 +100,7 @@ export default async function DashboardPage() {
       score: overall,
       label: survey.title.slice(0, 15) + (survey.title.length > 15 ? "..." : ""),
     };
-  }).filter((d): d is NonNullable<typeof d> => d !== null);
+  }).filter((d: any): d is NonNullable<typeof d> => d !== null);
 
   const hasSurveyData = sphereScores.length > 0;
 

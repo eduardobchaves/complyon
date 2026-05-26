@@ -11,7 +11,18 @@
       "Bash(read f *)",
       "Bash([ ! -f \"app/\\(superadmin\\)/companies/$f\" ])",
       "Bash([ ! -f \"app/superadmin/companies/$f\" ])",
-      "Bash(rm -f check-*.js test-*.js diagnose-*.js list-*.js && echo \"✅ Arquivos de teste removidos\")"
+      "Bash(rm -f check-*.js test-*.js diagnose-*.js list-*.js && echo \"✅ Arquivos de teste removidos\")",
+      "Bash(gh pr create --title 'Implementar reset de senha, correções de autenticação e melhorias na interface' --body ' *)",
+      "Bash(git commit -m 'Fix TypeScript error in complaints page map function type annotation *)",
+      "Bash(git push *)",
+      "Bash(vercel deploy *)",
+      "Bash(tee /tmp/deploy.log)",
+      "Bash(git commit -m 'Fix remaining filter parameter type in dashboard *)",
+      "Bash(git commit -m 'Relax TypeScript strict mode to resolve implicit any types for production build *)",
+      "Bash(curl -s https://www.complyon.com.br/api/auth/signin)",
+      "Bash(curl -I https://www.complyon.com.br)",
+      "Bash(curl -s -X POST https://www.complyon.com.br/api/debug/auth-test -H 'Content-Type: application/json' -d '{\"email\":\"superadmin@complyon.com.br\",\"password\":\"ComplyOn@2024\"}')",
+      "Bash(curl -v -X POST https://www.complyon.com.br/api/auth/callback/credentials -H 'Content-Type: application/x-www-form-urlencoded' -d 'email=superadmin@complyon.com.br&password=ComplyOn@2024&csrfToken=test')"
     ]
   }
 }

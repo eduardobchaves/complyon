@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { getActiveEmployeeCount } from "@/lib/billing";
 import { calculateMonthlyBilling } from "@/lib/billing-utils";
 
@@ -22,9 +22,12 @@ export async function GET() {
   let trialEndsAt: string | null = null;
   if (company?.stripeSubId) {
     try {
-      const sub = await stripe.subscriptions.retrieve(company.stripeSubId);
-      if (sub.status === "trialing" && sub.trial_end) {
-        trialEndsAt = new Date(sub.trial_end * 1000).toISOString();
+      const stripeClient = getStripe();
+      if (stripeClient) {
+        const sub = await stripeClient.subscriptions.retrieve(company.stripeSubId);
+        if (sub.status === "trialing" && sub.trial_end) {
+          trialEndsAt = new Date(sub.trial_end * 1000).toISOString();
+        }
       }
     } catch {}
   }

@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import Stripe from "stripe";
 
 export async function POST(request: NextRequest) {
+  const stripeClient = getStripe();
+  if (!stripeClient) {
+    return NextResponse.json({ error: "Stripe not configured" }, { status: 400 });
+  }
+
   const body = await request.text();
   const signature = request.headers.get("stripe-signature");
 
@@ -13,7 +18,7 @@ export async function POST(request: NextRequest) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET!);
+    event = stripeClient.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET!);
   } catch (err) {
     console.error("Webhook signature verification failed:", err);
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
@@ -27,7 +32,7 @@ export async function POST(request: NextRequest) {
         if (cs.mode !== "subscription") break;
 
         const subId = cs.subscription as string;
-        const sub = await stripe.subscriptions.retrieve(subId, { expand: ["items.data"] });
+        const sub = await stripeClient.subscriptions.retrieve(subId, { expand: ["items.data"] });
         const companyId = sub.metadata?.companyId;
         if (!companyId) break;
 
@@ -36,9 +41,8 @@ export async function POST(request: NextRequest) {
         await prisma.company.update({
           where: { id: companyId },
           data: {
-            plan: "ACTIVE",
+            plan: "STARTER",
             stripeSubId: subId,
-            stripeSubItemId: subItemId ?? null,
             maxEmployees: -1,
           },
         });
@@ -59,8 +63,7 @@ export async function POST(request: NextRequest) {
         await prisma.company.update({
           where: { id: company.id },
           data: {
-            ...(active && { plan: "ACTIVE", maxEmployees: -1 }),
-            ...(subItemId && { stripeSubItemId: subItemId }),
+            ...(active && { plan: "STARTER", maxEmployees: -1 }),
           },
         });
         break;
@@ -73,7 +76,7 @@ export async function POST(request: NextRequest) {
           where: { stripeCustomerId: invoice.customer as string },
         });
         if (company) {
-          await prisma.company.update({ where: { id: company.id }, data: { plan: "SUSPENDED" } });
+          await prisma.company.update({ where: { id: company.id }, data: { plan: "FREE" } });
         }
         break;
       }
@@ -84,10 +87,10 @@ export async function POST(request: NextRequest) {
         const company = await prisma.company.findFirst({
           where: { stripeCustomerId: invoice.customer as string },
         });
-        if (company?.plan === "SUSPENDED") {
+        if (company?.plan === "FREE") {
           await prisma.company.update({
             where: { id: company.id },
-            data: { plan: "ACTIVE", maxEmployees: -1 },
+            data: { plan: "STARTER", maxEmployees: -1 },
           });
         }
         break;
@@ -102,7 +105,7 @@ export async function POST(request: NextRequest) {
         if (company) {
           await prisma.company.update({
             where: { id: company.id },
-            data: { plan: "FREE", maxEmployees: 10, stripeSubId: null, stripeSubItemId: null },
+            data: { plan: "FREE", maxEmployees: 10, stripeSubId: null },
           });
         }
         break;

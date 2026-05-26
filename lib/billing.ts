@@ -1,5 +1,5 @@
 import "server-only";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
 // Tier data kept private here — only used for the Stripe price creation mapping below.
@@ -31,24 +31,38 @@ export async function getActiveEmployeeCount(companyId: string): Promise<number>
  * proration_behavior=none means the change takes effect on the next billing cycle.
  */
 export async function syncCompanyUsage(companyId: string): Promise<void> {
+  const stripeClient = getStripe();
+  if (!stripeClient) return; // Stripe not configured
+
   const company = await prisma.company.findUnique({
     where: { id: companyId },
-    select: { stripeSubItemId: true },
+    select: { stripeSubId: true },
   });
-  if (!company?.stripeSubItemId) return;
+  if (!company?.stripeSubId) return;
 
-  const count = await getActiveEmployeeCount(companyId);
-  await stripe.subscriptionItems.update(company.stripeSubItemId, {
-    quantity: count,
-    proration_behavior: "none",
-  }).catch(err => console.error("[billing] usage sync failed:", err));
+  try {
+    const subscription = await stripeClient.subscriptions.retrieve(company.stripeSubId);
+    const subItemId = subscription.items.data[0]?.id;
+    if (!subItemId) return;
+
+    const count = await getActiveEmployeeCount(companyId);
+    await stripeClient.subscriptionItems.update(subItemId, {
+      quantity: count,
+      proration_behavior: "none",
+    });
+  } catch (err) {
+    console.error("[billing] usage sync failed:", err);
+  }
 }
 
 /** Create (or retrieve) the Stripe tiered graduated price in BRL. */
 export async function getOrCreateTieredPriceId(): Promise<string> {
   if (process.env.STRIPE_METERED_PRICE_ID) return process.env.STRIPE_METERED_PRICE_ID;
 
-  const price = await stripe.prices.create({
+  const stripeClient = getStripe();
+  if (!stripeClient) throw new Error("Stripe not configured");
+
+  const price = await stripeClient.prices.create({
     currency: "brl",
     billing_scheme: "tiered",
     tiers_mode: "graduated",
@@ -72,6 +86,9 @@ export async function createCheckoutSession(
   successUrl: string,
   cancelUrl: string
 ): Promise<string> {
+  const stripeClient = getStripe();
+  if (!stripeClient) throw new Error("Stripe not configured");
+
   const priceId = await getOrCreateTieredPriceId();
 
   const company = await prisma.company.findUnique({
@@ -81,7 +98,7 @@ export async function createCheckoutSession(
 
   let customerId = company?.stripeCustomerId ?? undefined;
   if (!customerId) {
-    const customer = await stripe.customers.create({
+    const customer = await stripeClient.customers.create({
       email: companyEmail,
       name: company?.name,
       metadata: { companyId },
@@ -90,7 +107,7 @@ export async function createCheckoutSession(
     await prisma.company.update({ where: { id: companyId }, data: { stripeCustomerId: customerId } });
   }
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await stripeClient.checkout.sessions.create({
     customer: customerId,
     mode: "subscription",
     line_items: [{ price: priceId, quantity: Math.max(1, employeeCount) }],
@@ -104,7 +121,10 @@ export async function createCheckoutSession(
 
 /** Create Stripe Billing Portal session so the admin can manage their subscription. */
 export async function createPortalSession(customerId: string, returnUrl: string): Promise<string> {
-  const session = await stripe.billingPortal.sessions.create({
+  const stripeClient = getStripe();
+  if (!stripeClient) throw new Error("Stripe not configured");
+
+  const session = await stripeClient.billingPortal.sessions.create({
     customer: customerId,
     return_url: returnUrl,
   });

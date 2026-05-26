@@ -24,7 +24,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         try {
           const parsed = loginSchema.safeParse(credentials);
           if (!parsed.success) {
-            console.error("[Auth] Schema validation failed:", parsed.error.errors);
+            console.error("[Auth] Schema validation failed:", parsed.error.issues);
             return null;
           }
 
@@ -122,9 +122,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.sub as string;
-        (session.user as { role: string }).role = token.role as string;
-        (session.user as { companyId: string }).companyId = token.companyId as string;
-        (session.user as { companySlug: string }).companySlug = token.companySlug as string;
+        (session.user as unknown as { role: string }).role = token.role as string;
+        (session.user as unknown as { companyId: string }).companyId = token.companyId as string;
+        (session.user as unknown as { companySlug: string }).companySlug = token.companySlug as string;
       }
       return session;
     },

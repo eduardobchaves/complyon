@@ -16,7 +16,7 @@ const schema = z.object({
   cnpj: z.string().min(14, "CNPJ inválido"),
   adminEmail: z.string().email("Email inválido"),
   firstCode: z.string().min(4, "Código deve ter no mínimo 4 caracteres").max(32),
-  maxEmployees: z.coerce.number().int().min(1, "Mínimo 1 colaborador"),
+  maxEmployees: z.number().int().min(1, "Mínimo 1 colaborador"),
 });
 
 type FormData = z.infer<typeof schema>;
