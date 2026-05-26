@@ -49,7 +49,7 @@ export default async function DashboardPage() {
   if (latestClosed && latestClosed.responses.length > 0) {
     const responsesScores = latestClosed.responses
       .map((r: typeof latestClosed.responses[number]) => r.scores as Record<string, number> | null)
-      .filter((s): s is Record<string, number> => s !== null);
+      .filter((s: Record<string, number> | null): s is Record<string, number> => s !== null);
 
     const aggregatedScores = aggregateResponseScores(responsesScores);
     
